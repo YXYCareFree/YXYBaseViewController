@@ -1,0 +1,22 @@
+{
+  "name": "YXYBaseViewController",
+  "version": "0.1.0",
+  "summary": "A short description of YXYBaseViewController.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/YXYCareFree/YXYBaseViewController",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "YXYCareFree": "576842121@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/YXYCareFree/YXYBaseViewController.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "YXYBaseViewController/Classes/**/*"
+}

@@ -1,0 +1,6 @@
+framework module YXYBaseViewController {
+  umbrella header "YXYBaseViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}
