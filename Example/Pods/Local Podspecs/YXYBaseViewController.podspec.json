@@ -18,5 +18,10 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "YXYBaseViewController/Classes/**/*"
+  "source_files": "YXYBaseViewController/Classes/**/*",
+  "dependencies": {
+    "MJRefresh": [
+
+    ]
+  }
 }

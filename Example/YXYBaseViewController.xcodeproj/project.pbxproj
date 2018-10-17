@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0E57DEC956CF15088C6407FA /* Pods_YXYBaseViewController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADEB3E491A0191178EAD5E7 /* Pods_YXYBaseViewController_Example.framework */; };
+		184872062176C81500386B7D /* YXYHideNavBar.plist in Resources */ = {isa = PBXBuildFile; fileRef = 184872052176C81500386B7D /* YXYHideNavBar.plist */; };
+		184872112176CEEE00386B7D /* YXYTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184872102176CEEE00386B7D /* YXYTestViewController.m */; };
 		5C24D539D5F5444B0E6BB9B4 /* Pods_YXYBaseViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0FF056C430846DC8A2CE5A /* Pods_YXYBaseViewController_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -15,7 +17,6 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* YXYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* YXYAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* YXYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* YXYViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -37,10 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D241C816B59C05DD729E6AA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		184872052176C81500386B7D /* YXYHideNavBar.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YXYHideNavBar.plist; sourceTree = "<group>"; };
+		1848720F2176CEEE00386B7D /* YXYTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYTestViewController.h; sourceTree = "<group>"; };
+		184872102176CEEE00386B7D /* YXYTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYTestViewController.m; sourceTree = "<group>"; };
+		1D241C816B59C05DD729E6AA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		1EECB1F37CBC4E5684C7A45F /* Pods-YXYBaseViewController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXYBaseViewController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		1F67E12488BD56AC59EFAE03 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		3E9FBC55F571C363D075ABB5 /* YXYBaseViewController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = YXYBaseViewController.podspec; path = ../YXYBaseViewController.podspec; sourceTree = "<group>"; };
+		1F67E12488BD56AC59EFAE03 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		3E9FBC55F571C363D075ABB5 /* YXYBaseViewController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YXYBaseViewController.podspec; path = ../YXYBaseViewController.podspec; sourceTree = "<group>"; };
 		5A0FF056C430846DC8A2CE5A /* Pods_YXYBaseViewController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YXYBaseViewController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* YXYBaseViewController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXYBaseViewController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -52,8 +56,6 @@
 		6003F59B195388D20070C39A /* YXYBaseViewController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YXYBaseViewController-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* YXYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* YXYAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* YXYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* YXYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* YXYBaseViewController_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YXYBaseViewController_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -135,11 +137,12 @@
 				6003F59C195388D20070C39A /* YXYAppDelegate.h */,
 				6003F59D195388D20070C39A /* YXYAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* YXYViewController.h */,
-				6003F5A6195388D20070C39A /* YXYViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				184872052176C81500386B7D /* YXYHideNavBar.plist */,
+				1848720F2176CEEE00386B7D /* YXYTestViewController.h */,
+				184872102176CEEE00386B7D /* YXYTestViewController.m */,
 			);
 			name = "Example for YXYBaseViewController";
 			path = YXYBaseViewController;
@@ -280,6 +283,7 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				184872062176C81500386B7D /* YXYHideNavBar.plist in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,12 +330,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/YXYBaseViewController/YXYBaseViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YXYBaseViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,8 +405,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* YXYAppDelegate.m in Sources */,
-				6003F5A7195388D20070C39A /* YXYViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				184872112176CEEE00386B7D /* YXYTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

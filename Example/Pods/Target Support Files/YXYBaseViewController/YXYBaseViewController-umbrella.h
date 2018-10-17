@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "YXYBaseViewController.h"
+#import "YXYButton.h"
+#import "YXYLabel.h"
 
 FOUNDATION_EXPORT double YXYBaseViewControllerVersionNumber;
 FOUNDATION_EXPORT const unsigned char YXYBaseViewControllerVersionString[];

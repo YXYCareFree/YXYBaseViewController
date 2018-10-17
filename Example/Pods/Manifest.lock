@@ -9,13 +9,17 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
+  - Masonry (1.1.0)
+  - MJRefresh (3.1.15.7)
   - Specta (1.0.7)
-  - YXYBaseViewController (0.1.0)
+  - YXYBaseViewController (0.1.0):
+    - MJRefresh
 
 DEPENDENCIES:
   - Expecta
   - "Expecta+Snapshots"
   - FBSnapshotTestCase
+  - Masonry
   - Specta
   - YXYBaseViewController (from `../`)
 
@@ -24,6 +28,8 @@ SPEC REPOS:
     - Expecta
     - "Expecta+Snapshots"
     - FBSnapshotTestCase
+    - Masonry
+    - MJRefresh
     - Specta
 
 EXTERNAL SOURCES:
@@ -34,9 +40,11 @@ SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   "Expecta+Snapshots": dcff217eef506dabd6dfdc7864ea2da321fafbb8
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
-  YXYBaseViewController: e7329ecc5cfba3d00653af7eb2dea1f6475a7506
+  YXYBaseViewController: 4f5c80da9a0eeb70bcddf7878ff80b4a573f4d46
 
-PODFILE CHECKSUM: b7588a9202836ac625aac60f50f4e729a4164e9f
+PODFILE CHECKSUM: 816a4c1c455ff972cd7442915074f6285a279465
 
 COCOAPODS: 1.5.3

@@ -10,6 +10,15 @@
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
+
+#ifdef DEBUG
+#define NSLog(format, ...) do {                                           \
+fprintf(stderr,"[%s] <%s:%d> %s\t%s\n\n", __TIME__, [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __FUNCTION__, [[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]);                                                       \
+} while (0)
+#else
+#define NSLog(...)
+#endif
+
 #ifdef __OBJC__
     @import UIKit;
     @import Foundation;

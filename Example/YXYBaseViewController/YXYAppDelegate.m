@@ -7,12 +7,21 @@
 //
 
 #import "YXYAppDelegate.h"
-
+#import "YXYTestViewController.h"
+//#import"
 @implementation YXYAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+   //导航栏的背景色
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    //隐藏导航栏下方的横线
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[YXYTestViewController new]];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
