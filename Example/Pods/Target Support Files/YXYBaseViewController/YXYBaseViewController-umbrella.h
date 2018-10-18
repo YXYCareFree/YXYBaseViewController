@@ -10,6 +10,10 @@
 #endif
 #endif
 
+#import "NSString+RegularExpressions.h"
+#import "UIImage+QRCode.h"
+#import "UIView+Helper.h"
+#import "UIViewController+Extension.h"
 #import "YXYBaseViewController.h"
 #import "YXYButton.h"
 #import "YXYLabel.h"

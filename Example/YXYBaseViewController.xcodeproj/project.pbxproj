@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0E57DEC956CF15088C6407FA /* Pods_YXYBaseViewController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADEB3E491A0191178EAD5E7 /* Pods_YXYBaseViewController_Example.framework */; };
-		184872062176C81500386B7D /* YXYHideNavBar.plist in Resources */ = {isa = PBXBuildFile; fileRef = 184872052176C81500386B7D /* YXYHideNavBar.plist */; };
 		184872112176CEEE00386B7D /* YXYTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184872102176CEEE00386B7D /* YXYTestViewController.m */; };
 		5C24D539D5F5444B0E6BB9B4 /* Pods_YXYBaseViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0FF056C430846DC8A2CE5A /* Pods_YXYBaseViewController_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -38,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		184872052176C81500386B7D /* YXYHideNavBar.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YXYHideNavBar.plist; sourceTree = "<group>"; };
 		1848720F2176CEEE00386B7D /* YXYTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYTestViewController.h; sourceTree = "<group>"; };
 		184872102176CEEE00386B7D /* YXYTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYTestViewController.m; sourceTree = "<group>"; };
 		1D241C816B59C05DD729E6AA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
-				184872052176C81500386B7D /* YXYHideNavBar.plist */,
 				1848720F2176CEEE00386B7D /* YXYTestViewController.h */,
 				184872102176CEEE00386B7D /* YXYTestViewController.m */,
 			);
@@ -283,7 +280,6 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				184872062176C81500386B7D /* YXYHideNavBar.plist in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

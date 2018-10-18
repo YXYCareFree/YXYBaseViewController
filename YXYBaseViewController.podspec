@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YXYBaseViewController'
-  s.version          = '0.0.1'
-  s.summary          = 'VC基类'
+  s.version          = '0.0.2'
+  s.summary          = 'VC基类和一些常用的category'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-基类VC
+基类VC和一些常用的category
                        DESC
 
   s.homepage         = 'https://github.com/YXYCareFree/YXYBaseViewController'
