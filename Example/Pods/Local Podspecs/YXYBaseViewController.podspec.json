@@ -1,8 +1,8 @@
 {
   "name": "YXYBaseViewController",
   "version": "0.0.2",
-  "summary": "VC基类和一些常用的category",
-  "description": "基类VC和一些常用的category",
+  "summary": "VC基类和常用的category",
+  "description": "基类VC和常用的category",
   "homepage": "https://github.com/YXYCareFree/YXYBaseViewController",
   "license": {
     "type": "MIT",
@@ -21,6 +21,9 @@
   "source_files": "YXYBaseViewController/Classes/**/*",
   "dependencies": {
     "MJRefresh": [
+
+    ],
+    "Masonry": [
 
     ]
   }
