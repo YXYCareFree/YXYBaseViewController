@@ -30,4 +30,11 @@
         return self;
     };
 }
+
+- (YXYButton *(^)(UIImage *, UIControlState))bgImgae{
+    return ^id(UIImage *image, UIControlState state){
+        [self setBackgroundImage:image forState:state];
+        return self;
+    };
+}
 @end

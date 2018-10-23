@@ -16,4 +16,6 @@
 
 - (YXYButton *(^)(UIFont *font))titleFont;
 
+- (YXYButton *(^)(UIImage *image, UIControlState state))bgImgae;
+
 @end
