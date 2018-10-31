@@ -1,6 +1,6 @@
 {
   "name": "YXYBaseViewController",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "summary": "VC基类和常用的category",
   "description": "基类VC和常用的category",
   "homepage": "https://github.com/YXYCareFree/YXYBaseViewController",
@@ -13,17 +13,23 @@
   },
   "source": {
     "git": "https://github.com/YXYCareFree/YXYBaseViewController.git",
-    "tag": "0.0.2"
+    "tag": "0.0.3"
   },
   "platforms": {
     "ios": "8.0"
   },
   "source_files": "YXYBaseViewController/Classes/**/*",
   "dependencies": {
+    "AFNetworking": [
+
+    ],
     "MJRefresh": [
 
     ],
     "Masonry": [
+
+    ],
+    "YYCache": [
 
     ]
   }
