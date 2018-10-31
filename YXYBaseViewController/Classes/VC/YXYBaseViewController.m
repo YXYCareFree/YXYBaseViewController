@@ -7,6 +7,10 @@
 
 #import "YXYBaseViewController.h"
 #import "MJRefresh.h"
+#import "Masonry.h"
+
+#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+#define STATUS_BAR_HEIGHT (iPhoneX ? 44.f : 20.f)
 
 @interface YXYBaseViewController ()<UINavigationControllerDelegate>
 
@@ -21,6 +25,9 @@
 //    BOOL hidden = [self checkNavBarHidden:self];
     //某些情况下隐藏和显示navbar会有一个动画，需要在该界面禁止此动画
 //    [self.navigationController setNavigationBarHidden:hidden animated:![self isKindOfClass:NSClassFromString(@"OrderViewController")]];
+    BOOL hidden = [self checkNavBarHidden:self];
+    //animated设置NO会导致navBar出现黑色
+    [self.navigationController setNavigationBarHidden:hidden animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -33,6 +40,38 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.delegate = self;
+    
+    [self setYXYNavBar];
+}
+
+- (void)setYXYNavBar{
+    if ([self checkNavBarHidden:self]) {
+        [self.view addSubview:self.btnBack];
+        [self.btnBack mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@15);
+            make.top.equalTo(@(STATUS_BAR_HEIGHT + 15));
+            make.width.equalTo(@10);
+            make.height.equalTo(@17);
+        }];
+        UIView *vBack = UIView.new;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backClicked)];
+        [vBack addGestureRecognizer:tap];
+        [self.view addSubview:vBack];
+        [vBack mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.btnBack);
+            make.width.height.equalTo(@25);
+        }];
+        [self.view addSubview:self.lblTitle];
+        [self.lblTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(@(STATUS_BAR_HEIGHT));
+            make.centerX.equalTo(self.view);
+            make.height.equalTo(@44);
+        }];
+    }
+}
+
+- (void)backClicked{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)endEditing{
@@ -90,8 +129,6 @@
     if (!_tableView) {
         _tableView = [UITableView new];
         _tableView.backgroundColor = [UIColor whiteColor];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -101,5 +138,20 @@
         [self.view addSubview:_tableView];
     }
     return _tableView;
+}
+
+- (UIButton *)btnBack{
+    if (!_btnBack) {
+        _btnBack = [UIButton new];
+        [_btnBack addTarget:self action:@selector(backClicked) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnBack;
+}
+
+- (YXYLabel *)lblTitle{
+    if (!_lblTitle) {
+        _lblTitle = [YXYLabel new];
+    }
+    return _lblTitle;
 }
 @end

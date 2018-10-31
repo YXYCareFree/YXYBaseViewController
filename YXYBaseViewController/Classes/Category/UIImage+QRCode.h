@@ -16,7 +16,7 @@
  @param string 二维码的字符串
  @param Imagesize  二维码大小
  @param waterImagesize  二维码中间logo的大小
- @param logoImage  logo图片
+ @param image  logo图片
  @return  生成带logo的二维码
  */
 + (UIImage *)qrImageForString:(NSString *)string imageSize:(CGFloat)Imagesize logoImageSize:(CGFloat)waterImagesize logoImage:(UIImage *)image;

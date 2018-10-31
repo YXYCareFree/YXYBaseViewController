@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YXYLabel.h"
 
 @protocol YXYBaseViewControlerRefreshDelegate <NSObject>
 
@@ -23,6 +24,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, weak) id<YXYBaseViewControlerRefreshDelegate> refreshDelegate;
+
+/**
+ 当VC的navbar隐藏的时候才会加载在View上
+ */
+@property (nonatomic, strong) UIButton *btnBack;
+/**
+ 当VC的navbar隐藏的时候才会加载在View上
+ */
+@property (nonatomic, strong) YXYLabel *lblTitle;
 
 @end
 

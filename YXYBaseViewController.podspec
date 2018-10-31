@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YXYBaseViewController'
-    s.version          = '0.0.2'
+    s.version          = '0.0.3'
     s.summary          = 'VC基类和常用的category'
     
     # This description is used to generate tags and improve search results.
@@ -41,4 +41,5 @@ Pod::Spec.new do |s|
     # s.dependency 'AFNetworking', '~> 2.3'
     s.dependency 'MJRefresh'
     s.dependency 'Masonry'
+    s.dependency 'YYCache'
 end
