@@ -14,7 +14,7 @@
 
 @interface YXYBaseViewController ()<UINavigationControllerDelegate>
 
-@property (nonatomic, assign) NSInteger pageNo;
+@property (nonatomic, assign) NSInteger pageNum;
 
 @end
 
@@ -77,7 +77,7 @@
 - (void)endEditing{
     [self.view.window endEditing:YES];
 }
-
+#pragma mark--UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     BOOL hidden = [self checkNavBarHidden:viewController];
     [self.navigationController setNavigationBarHidden:hidden animated:YES];
@@ -94,13 +94,13 @@
     }
     return hidden;
 }
-
+#pragma mark--PullDown  PullUp
 - (void)pullDownRefresh{
     if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(YXYVC_PullDownRefreshCompletion:)]) {
         [self.refreshDelegate YXYVC_PullDownRefreshCompletion:^(BOOL success) {
             [self.tableView.mj_header endRefreshing];
             if (success) {
-                self.pageNo = 0;
+                self.pageNum = 0;
             }
         }];
     }
@@ -108,20 +108,19 @@
 
 - (void)pullUpLoadMore{
     if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(YXYVC_PullUpLoadMore:completion:)]) {
-        [self.refreshDelegate YXYVC_PullUpLoadMore:++self.pageNo completion:^(BOOL success) {
+        [self.refreshDelegate YXYVC_PullUpLoadMore:++self.pageNum completion:^(BOOL success) {
             [self.tableView.mj_footer endRefreshing];
             if (!success) {
-                self.pageNo--;
+                self.pageNum--;
             }
         }];
     }
 }
-
+#pragma mark--Setter  Getter
 - (void)setRefreshDelegate:(id<YXYBaseViewControlerRefreshDelegate>)refreshDelegate{
     if (!refreshDelegate) return;
     _refreshDelegate = refreshDelegate;
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh)];
-    
     _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullUpLoadMore)];
 }
 

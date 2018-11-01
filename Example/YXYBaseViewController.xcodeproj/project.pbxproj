@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E57DEC956CF15088C6407FA /* Pods_YXYBaseViewController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADEB3E491A0191178EAD5E7 /* Pods_YXYBaseViewController_Example.framework */; };
 		184872112176CEEE00386B7D /* YXYTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184872102176CEEE00386B7D /* YXYTestViewController.m */; };
+		18E1F6B12189ACB800AC99E8 /* YXYTestInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1F6B02189ACB800AC99E8 /* YXYTestInteractor.m */; };
 		5C24D539D5F5444B0E6BB9B4 /* Pods_YXYBaseViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0FF056C430846DC8A2CE5A /* Pods_YXYBaseViewController_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -39,6 +40,8 @@
 /* Begin PBXFileReference section */
 		1848720F2176CEEE00386B7D /* YXYTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYTestViewController.h; sourceTree = "<group>"; };
 		184872102176CEEE00386B7D /* YXYTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYTestViewController.m; sourceTree = "<group>"; };
+		18E1F6AF2189ACB800AC99E8 /* YXYTestInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYTestInteractor.h; sourceTree = "<group>"; };
+		18E1F6B02189ACB800AC99E8 /* YXYTestInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYTestInteractor.m; sourceTree = "<group>"; };
 		1D241C816B59C05DD729E6AA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		1EECB1F37CBC4E5684C7A45F /* Pods-YXYBaseViewController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXYBaseViewController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		1F67E12488BD56AC59EFAE03 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 				6003F594195388D20070C39A /* Supporting Files */,
 				1848720F2176CEEE00386B7D /* YXYTestViewController.h */,
 				184872102176CEEE00386B7D /* YXYTestViewController.m */,
+				18E1F6AF2189ACB800AC99E8 /* YXYTestInteractor.h */,
+				18E1F6B02189ACB800AC99E8 /* YXYTestInteractor.m */,
 			);
 			name = "Example for YXYBaseViewController";
 			path = YXYBaseViewController;
@@ -391,6 +396,7 @@
 				6003F59E195388D20070C39A /* YXYAppDelegate.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				184872112176CEEE00386B7D /* YXYTestViewController.m in Sources */,
+				18E1F6B12189ACB800AC99E8 /* YXYTestInteractor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

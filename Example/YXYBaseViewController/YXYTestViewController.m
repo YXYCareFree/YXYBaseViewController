@@ -10,8 +10,11 @@
 #import "YXYLabel.h"
 #import "Masonry.h"
 #import "UIView+Helper.h"
+#import "YXYTestInteractor.h"
 
-@interface YXYTestViewController ()<UITableViewDelegate, UITableViewDataSource, YXYBaseViewControlerRefreshDelegate>
+@interface YXYTestViewController ()
+
+@property (nonatomic, strong) YXYTestInteractor *interactor;
 
 @end
 
@@ -25,7 +28,12 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    self.refreshDelegate = self;
+
+    _interactor = YXYTestInteractor.new;
+    self.tableView.delegate = _interactor;
+    self.tableView.dataSource = _interactor;
+    self.refreshDelegate = _interactor;
+    _interactor.vc = self;
     
     UILabel *label = [[UILabel alloc] init];
     label.text = @"我是YXYLable";
@@ -56,22 +64,6 @@
     }];
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UITableViewCell *cell = [UITableViewCell new];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
-    return cell;
-}
 
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
-}
-
-- (void)YXYVC_PullUpLoadMore:(NSInteger)page completion:(void (^)(BOOL))block{
-    block(YES);
-}
-
-- (void)YXYVC_PullDownRefreshCompletion:(void (^)(BOOL))block{
-    block(YES);
-}
 
 @end
