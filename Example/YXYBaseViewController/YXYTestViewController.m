@@ -23,12 +23,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    void(^GlobalBlock)() = ^{
+        
+    };
+    NSLog(@"%@", [GlobalBlock class]);
+    
+    
+    
+    
     self.view.backgroundColor = [UIColor yellowColor];
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-
+    [self performSelector:@selector(test:) withObject:@12];
     _interactor = YXYTestInteractor.new;
     self.tableView.delegate = _interactor;
     self.tableView.dataSource = _interactor;
@@ -57,13 +65,11 @@
         make.width.equalTo(@200);
         make.height.equalTo(@30);
         make.left.equalTo(label.mas_right).offset(5);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"%f, %f, %f, %@", lbl.yxy_x, lbl.yxy_cy, lbl.center.x, NSStringFromCGRect(lbl.frame));
-            NSLog(@"22==%f, %f, %f, %@", label.yxy_x, label.yxy_cy, label.center.x, NSStringFromCGRect(label.frame));
-        });
     }];
 }
 
-
+- (void)test:(NSNumber *)str{
+    NSLog(@"%@", str);
+}
 
 @end
