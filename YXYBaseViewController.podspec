@@ -33,22 +33,19 @@ Pod::Spec.new do |s|
     s.source_files = 'YXYBaseViewController/Classes/**/*'
 
     s.subspec 'Category' do |ss|
-        ss.source_files = 'YXYBaseViewController/Category.{h,m}'
+        ss.source_files = 'YXYBaseViewController/Classes/Category/**/*'
     end
 
-    s.subspec 'Network' do |ss|
-        ss.source_files = 'YXYBaseViewController/Network.{h,m}'
-        
-    end
-
-    s.subspec 'VC' do |ss|
-        ss.source_files = 'YXYBaseViewController/VC.{h,m}'
-        
-    end
+#    s.subspec 'Network' do |ss|
+#        ss.source_files = 'YXYBaseViewController/Classes/Network/**/*'
+#    end
+#
+#    s.subspec 'VC' do |ss|
+#        ss.source_files = 'YXYBaseViewController/Classes/VC/**/*'
+#    end
 
     s.subspec 'YXYKit' do |ss|
-        ss.source_files = 'YXYBaseViewController/YXYKit.{h,m}'
-        
+        ss.source_files = 'YXYBaseViewController/Classes/YXYKit/**/*'
     end
     # s.resource_bundles = {
     #   'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
