@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YXYBaseViewController'
-    s.version          = '0.0.4'
+    s.version          = '0.0.5'
     s.summary          = 'VC基类和常用的category'
     
     # This description is used to generate tags and improve search results.
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '8.0'
     
-    s.source_files = 'YXYBaseViewController/Classes/**/*'
+    # s.source_files = 'YXYBaseViewController/Classes/**/*'
 
     s.subspec 'Category' do |ss|
         ss.source_files = 'YXYBaseViewController/Classes/Category/**/*'
@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
 #    s.subspec 'Network' do |ss|
 #        ss.source_files = 'YXYBaseViewController/Classes/Network/**/*'
 #    end
-#
+
 #    s.subspec 'VC' do |ss|
 #        ss.source_files = 'YXYBaseViewController/Classes/VC/**/*'
 #    end
