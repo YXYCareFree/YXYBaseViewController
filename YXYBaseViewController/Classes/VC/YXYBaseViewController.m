@@ -6,15 +6,16 @@
 //
 
 #import "YXYBaseViewController.h"
-#import "MJRefresh.h"
 #import "Masonry.h"
 
-#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+//#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhoneX           [UIScreen mainScreen].bounds.size.width == 812
 #define STATUS_BAR_HEIGHT (iPhoneX ? 44.f : 20.f)
 
 @interface YXYBaseViewController ()<UINavigationControllerDelegate>
 
-@property (nonatomic, assign) NSInteger pageNum;
+@property (nonatomic, strong) UIView *vBack;
+@property (nonatomic, assign) NSInteger originalPageNum;
 
 @end
 
@@ -27,7 +28,11 @@
 //    [self.navigationController setNavigationBarHidden:hidden animated:![self isKindOfClass:NSClassFromString(@"OrderViewController")]];
     BOOL hidden = [self checkNavBarHidden:self];
     //animated设置NO会导致navBar出现黑色
+//    self.navigationController.navigationBar.translucent = hidden;
     [self.navigationController setNavigationBarHidden:hidden animated:YES];
+    if (_vBack || _lblTitle) {
+        [self.view addSubview:self.vNavBar];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -37,45 +42,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.delegate = self;
-    
-    [self setYXYNavBar];
 }
 
-- (void)setYXYNavBar{
-    if ([self checkNavBarHidden:self]) {
-        [self.view addSubview:self.btnBack];
-        [self.btnBack mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@15);
-            make.top.equalTo(@(STATUS_BAR_HEIGHT + 15));
-            make.width.equalTo(@10);
-            make.height.equalTo(@17);
-        }];
-        UIView *vBack = UIView.new;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backClicked)];
-        [vBack addGestureRecognizer:tap];
-        [self.view addSubview:vBack];
-        [vBack mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self.btnBack);
-            make.width.height.equalTo(@25);
-        }];
-        [self.view addSubview:self.lblTitle];
-        [self.lblTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(@(STATUS_BAR_HEIGHT));
-            make.centerX.equalTo(self.view);
-            make.height.equalTo(@44);
-        }];
-    }
+- (void)setVBackHidden:(BOOL)vBackHidden{
+    _vBackHidden = vBackHidden;
+    self.vBack.hidden = vBackHidden;
 }
 
 - (void)backClicked{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.presentingViewController) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)endEditing{
     [self.view.window endEditing:YES];
+}
+
+- (void)addEndEditingTapGesture{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEditing)];
+    [self.view addGestureRecognizer:tap];
 }
 #pragma mark--UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -97,11 +88,12 @@
 #pragma mark--PullDown  PullUp
 - (void)pullDownRefresh{
     if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(YXYVC_PullDownRefreshCompletion:)]) {
+        self.pageNum = self.originalPageNum;
         [self.refreshDelegate YXYVC_PullDownRefreshCompletion:^(BOOL success) {
-            [self.tableView.mj_header endRefreshing];
             if (success) {
-                self.pageNum = 0;
+                [self.tableView reloadData];
             }
+            [self.tableView.mj_header endRefreshing];
         }];
     }
 }
@@ -109,10 +101,12 @@
 - (void)pullUpLoadMore{
     if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(YXYVC_PullUpLoadMore:completion:)]) {
         [self.refreshDelegate YXYVC_PullUpLoadMore:++self.pageNum completion:^(BOOL success) {
-            [self.tableView.mj_footer endRefreshing];
             if (!success) {
                 self.pageNum--;
+            }else{
+                [self.tableView reloadData];
             }
+            [self.tableView.mj_footer endRefreshing];
         }];
     }
 }
@@ -120,8 +114,19 @@
 - (void)setRefreshDelegate:(id<YXYBaseViewControlerRefreshDelegate>)refreshDelegate{
     if (!refreshDelegate) return;
     _refreshDelegate = refreshDelegate;
-    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh)];
-    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullUpLoadMore)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullUpLoadMore)];
+}
+
+- (void)setPageNum:(NSInteger)pageNum{
+    _pageNum = pageNum;
+    self.originalPageNum = pageNum;
+}
+
+- (void)setColorBack:(UIColor *)colorBack{
+    _colorBack = colorBack;
+    self.btnBack.tintColor = colorBack;
+    [self.btnBack setImage:[self.btnBack.currentImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
 }
 
 - (UITableView *)tableView{
@@ -129,10 +134,11 @@
         _tableView = [UITableView new];
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+        _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
-            // Fallback on earlier versions
+            self.automaticallyAdjustsScrollViewInsets = NO;
         }
         [self.view addSubview:_tableView];
     }
@@ -143,6 +149,7 @@
     if (!_btnBack) {
         _btnBack = [UIButton new];
         [_btnBack addTarget:self action:@selector(backClicked) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.vNavBar];
     }
     return _btnBack;
 }
@@ -150,7 +157,47 @@
 - (YXYLabel *)lblTitle{
     if (!_lblTitle) {
         _lblTitle = [YXYLabel new];
+        [self.view addSubview:self.vNavBar];
     }
     return _lblTitle;
+}
+
+- (UIView *)vNavBar{
+    if (!_vNavBar) {
+        UIView *vNavBar = UIView.new;
+        _vNavBar = vNavBar;
+        [self.view addSubview:vNavBar];
+        [vNavBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.equalTo(@0);
+            make.height.equalTo(@(STATUS_BAR_HEIGHT + 44));
+        }];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backClicked)];
+        [self.vBack addGestureRecognizer:tap];
+        [vNavBar addSubview:self.vBack];
+        [self.vBack mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(@(STATUS_BAR_HEIGHT));
+            make.left.equalTo(@(10));
+            make.width.height.equalTo(@44);
+        }];
+        [self.vBack addSubview:self.btnBack];
+        [self.btnBack mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.vBack);
+        }];
+        [vNavBar addSubview:self.lblTitle];
+        [self.lblTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(vNavBar);
+            make.top.equalTo(@(STATUS_BAR_HEIGHT));
+            make.height.equalTo(@44);
+        }];
+    }
+    return _vNavBar;
+}
+
+- (UIView *)vBack{
+    if (!_vBack) {
+        _vBack = UIView.new;
+    }
+    return _vBack;
 }
 @end

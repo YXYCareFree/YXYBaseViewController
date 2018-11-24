@@ -27,6 +27,7 @@
 //    [[UINavigationBar appearance] setBarTintColor:ThemeColor];
 //    [UINavigationBar appearance].translucent= NO;
     
+//    self.navigationBar.translucent = YES;
     UIPanGestureRecognizer  *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self.interactivePopGestureRecognizer.delegate action:@selector(handleNavigationTransition:)];
     [self.view addGestureRecognizer:pan];
     pan.delegate = self;

@@ -7,7 +7,6 @@
 //
 
 #import "UIView+Helper.h"
-#import <objc/runtime.h>
 
 @implementation UIView (Helper)
 

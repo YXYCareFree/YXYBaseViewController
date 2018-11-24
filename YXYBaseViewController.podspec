@@ -4,11 +4,13 @@
 #
 # Any lines starting with a # are optional, but their use is encouraged
 # To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
+
+#pod lib lint YXYBaseViewController.podspec --allow-warnings --verbose
+#pod trunk push YXYBaseViewController.podspec --allow-warnings --verbose
 
 Pod::Spec.new do |s|
     s.name             = 'YXYBaseViewController'
-    s.version          = '0.0.5'
+    s.version          = '0.0.6'
     s.summary          = 'VC基类和常用的category'
     
     # This description is used to generate tags and improve search results.
@@ -30,26 +32,30 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '8.0'
     
-    # s.source_files = 'YXYBaseViewController/Classes/**/*'
+#     s.source_files = 'YXYBaseViewController/Classes/**/*'
 
     s.subspec 'Category' do |ss|
         ss.source_files = 'YXYBaseViewController/Classes/Category/**/*'
     end
 
-#    s.subspec 'Network' do |ss|
-#        ss.source_files = 'YXYBaseViewController/Classes/Network/**/*'
-#    end
+    s.subspec 'Network' do |ss|
+        ss.source_files = 'YXYBaseViewController/Classes/Network/**/*'
+    end
 
-#    s.subspec 'VC' do |ss|
-#        ss.source_files = 'YXYBaseViewController/Classes/VC/**/*'
-#    end
+    s.subspec 'VC' do |ss|
+        ss.source_files = 'YXYBaseViewController/Classes/VC/**/*'
+    end
+
+   s.subspec 'View' do |ss|
+        ss.source_files = 'YXYBaseViewController/Classes/View/**/*'
+    end
 
     s.subspec 'YXYKit' do |ss|
         ss.source_files = 'YXYBaseViewController/Classes/YXYKit/**/*'
     end
-    # s.resource_bundles = {
-    #   'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
-    # }
+     s.resource_bundles = {
+       'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
+     }
     
     # s.public_header_files = 'Pod/Classes/**/*.h'
     # s.frameworks = 'UIKit', 'MapKit'
@@ -57,4 +63,5 @@ Pod::Spec.new do |s|
     s.dependency 'MJRefresh'
     s.dependency 'Masonry'
     s.dependency 'YYCache'
+    s.dependency 'MBProgressHUD'
 end

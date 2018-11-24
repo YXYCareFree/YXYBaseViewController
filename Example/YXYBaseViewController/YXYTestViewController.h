@@ -6,7 +6,7 @@
 //  Copyright © 2018年 YXYCareFree. All rights reserved.
 //
 
-#import <YXYBaseViewController/YXYBaseViewController.h>
+#import "YXYBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
