@@ -28,11 +28,19 @@
 //    [UINavigationBar appearance].translucent= NO;
     
 //    self.navigationBar.translucent = YES;
+    
     UIPanGestureRecognizer  *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self.interactivePopGestureRecognizer.delegate action:@selector(handleNavigationTransition:)];
     [self.view addGestureRecognizer:pan];
     pan.delegate = self;
-    // 禁止之前手势
+//    // 禁止之前手势
     self.interactivePopGestureRecognizer.enabled = NO;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    // 注意：只有非根控制器才有滑动返回功能，根控制器没有。
+    // 判断导航控制器是否只有一个子控制器，如果只有一个子控制器，肯定是根控制器
+    return self.childViewControllers.count > 1;
 }
 
 - (void)setTabbarTitle:(NSString *)title normalImage:(UIImage *)normalImage selectedImage:(UIImage *)selectedImage{

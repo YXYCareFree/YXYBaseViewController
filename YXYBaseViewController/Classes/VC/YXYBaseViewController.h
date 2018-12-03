@@ -46,11 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *vNavBar;
 
 /**
- 需要分页加载时的当前页码
- */
-@property (nonatomic, assign) NSInteger pageNum;
-
-/**
  返回按钮的颜色
  */
 @property (nonatomic, strong) UIColor *colorBack;

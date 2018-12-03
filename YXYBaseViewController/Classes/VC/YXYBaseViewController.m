@@ -8,8 +8,9 @@
 #import "YXYBaseViewController.h"
 #import "Masonry.h"
 
-//#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
-#define iPhoneX           [UIScreen mainScreen].bounds.size.width == 812
+//#define iPhoneX (([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO) || ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1624), [[UIScreen mainScreen] currentMode].size) : NO))
+#define iPhoneX  [UIScreen mainScreen].bounds.size.height >= 812
+
 #define STATUS_BAR_HEIGHT (iPhoneX ? 44.f : 20.f)
 
 @interface YXYBaseViewController ()<UINavigationControllerDelegate>
@@ -30,6 +31,7 @@
     //animated设置NO会导致navBar出现黑色
 //    self.navigationController.navigationBar.translucent = hidden;
     [self.navigationController setNavigationBarHidden:hidden animated:YES];
+
     if (_vBack || _lblTitle) {
         [self.view addSubview:self.vNavBar];
     }
@@ -38,6 +40,8 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.view.window endEditing:YES];
+
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -75,6 +79,7 @@
 }
 
 - (BOOL)checkNavBarHidden:(UIViewController *)vc{
+    return YES;
     BOOL hidden = NO;
     NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"YXYHideNavBarVC"];
     for (NSString *str in arr) {
@@ -88,7 +93,6 @@
 #pragma mark--PullDown  PullUp
 - (void)pullDownRefresh{
     if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(YXYVC_PullDownRefreshCompletion:)]) {
-        self.pageNum = self.originalPageNum;
         [self.refreshDelegate YXYVC_PullDownRefreshCompletion:^(BOOL success) {
             if (success) {
                 [self.tableView reloadData];
@@ -100,10 +104,8 @@
 
 - (void)pullUpLoadMore{
     if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(YXYVC_PullUpLoadMore:completion:)]) {
-        [self.refreshDelegate YXYVC_PullUpLoadMore:++self.pageNum completion:^(BOOL success) {
-            if (!success) {
-                self.pageNum--;
-            }else{
+        [self.refreshDelegate YXYVC_PullUpLoadMore:1 completion:^(BOOL success) {
+            if (success) {
                 [self.tableView reloadData];
             }
             [self.tableView.mj_footer endRefreshing];
@@ -116,11 +118,6 @@
     _refreshDelegate = refreshDelegate;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh)];
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullUpLoadMore)];
-}
-
-- (void)setPageNum:(NSInteger)pageNum{
-    _pageNum = pageNum;
-    self.originalPageNum = pageNum;
 }
 
 - (void)setColorBack:(UIColor *)colorBack{
@@ -168,8 +165,9 @@
         _vNavBar = vNavBar;
         [self.view addSubview:vNavBar];
         [vNavBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.equalTo(@0);
-            make.height.equalTo(@(STATUS_BAR_HEIGHT + 44));
+            make.top.equalTo(@(0));
+            make.left.right.equalTo(@0);
+            make.height.equalTo(@(44 + STATUS_BAR_HEIGHT));
         }];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backClicked)];
@@ -177,12 +175,14 @@
         [vNavBar addSubview:self.vBack];
         [self.vBack mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(@(STATUS_BAR_HEIGHT));
-            make.left.equalTo(@(10));
-            make.width.height.equalTo(@44);
+            make.left.equalTo(@(0));
+            make.height.equalTo(@44);
+            make.width.equalTo(@60);
         }];
         [self.vBack addSubview:self.btnBack];
         [self.btnBack mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self.vBack);
+            make.centerY.equalTo(self.vBack);
+            make.left.equalTo(@15);
         }];
         [vNavBar addSubview:self.lblTitle];
         [self.lblTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -200,4 +200,5 @@
     }
     return _vBack;
 }
+
 @end

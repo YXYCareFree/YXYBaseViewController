@@ -48,6 +48,7 @@
 }
 
 - (void)setupView{
+    [[UIApplication sharedApplication].delegate.window endEditing:YES];
     self.frame = [UIScreen mainScreen].bounds;
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
 

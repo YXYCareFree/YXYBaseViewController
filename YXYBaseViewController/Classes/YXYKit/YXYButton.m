@@ -37,4 +37,11 @@
         return self;
     };
 }
+
+- (YXYButton *(^)(UIImage *, UIControlState))setImgae{
+    return ^id(UIImage *image, UIControlState state){
+        [self setImage:image forState:state];
+        return self;
+    };
+}
 @end

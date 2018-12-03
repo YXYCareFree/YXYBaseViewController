@@ -64,4 +64,5 @@ Pod::Spec.new do |s|
     s.dependency 'Masonry'
     s.dependency 'YYCache'
     s.dependency 'MBProgressHUD'
+    s.dependency 'SDWebImage'
 end

@@ -18,4 +18,6 @@
 
 - (YXYButton *(^)(UIImage *image, UIControlState state))bgImgae;
 
+- (YXYButton *(^)(UIImage *image, UIControlState state))setImgae;
+
 @end

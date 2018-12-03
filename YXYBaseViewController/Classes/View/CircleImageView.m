@@ -14,5 +14,6 @@
     [super layoutSubviews];
     self.layer.cornerRadius = self.yxy_w / 2;
     self.layer.masksToBounds = YES;
+    self.contentMode = UIViewContentModeScaleAspectFill;
 }
 @end
