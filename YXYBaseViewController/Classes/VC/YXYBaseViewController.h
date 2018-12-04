@@ -20,7 +20,7 @@
 #define YXYHideNavBar   @"YXYHideNavBar"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXYBaseViewController : UIViewController
+@interface YXYBaseViewController : UIViewController<UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 

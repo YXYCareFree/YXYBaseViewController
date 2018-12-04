@@ -13,7 +13,7 @@
 
 #define STATUS_BAR_HEIGHT (iPhoneX ? 44.f : 20.f)
 
-@interface YXYBaseViewController ()<UINavigationControllerDelegate>
+@interface YXYBaseViewController ()
 
 @property (nonatomic, strong) UIView *vBack;
 @property (nonatomic, assign) NSInteger originalPageNum;

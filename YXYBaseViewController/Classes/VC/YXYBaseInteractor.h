@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) NSString *pageNum;
 
+@property (nonatomic, assign) NSInteger orignalPageNum;
+@property (nonatomic, assign) NSInteger pn;
+
 - (void)loadData:(void(^)(BOOL success, id obj))completion;
 
 @end

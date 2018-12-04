@@ -38,9 +38,26 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    // 注意：只有非根控制器才有滑动返回功能，根控制器没有。
-    // 判断导航控制器是否只有一个子控制器，如果只有一个子控制器，肯定是根控制器
-    return self.childViewControllers.count > 1;
+    if (![self checkForbidPanGuesture]) {
+        // 注意：只有非根控制器才有滑动返回功能，根控制器没有。
+        // 判断导航控制器是否只有一个子控制器，如果只有一个子控制器，肯定是根控制器
+        return self.childViewControllers.count > 1;
+    }else{
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)checkForbidPanGuesture{
+    BOOL hidden = NO;
+    NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"YXYForbidPanGesture"];
+    for (NSString *str in arr) {
+        if ([self.topViewController isKindOfClass:NSClassFromString(str)]) {
+            hidden = YES;
+            break;
+        }
+    }
+    return hidden;
 }
 
 - (void)setTabbarTitle:(NSString *)title normalImage:(UIImage *)normalImage selectedImage:(UIImage *)selectedImage{

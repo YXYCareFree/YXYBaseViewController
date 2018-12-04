@@ -9,16 +9,9 @@
 
 @interface YXYBaseInteractor ()
 
-@property (nonatomic, strong) NSString *orignalPageNum;
-
 @end
 
 @implementation YXYBaseInteractor
-
-- (void)setPageNum:(NSString *)pageNum{
-    _pageNum = pageNum;
-    self.orignalPageNum = pageNum;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCell.new;
@@ -33,10 +26,13 @@
 }
 
 - (void)YXYVC_PullDownRefreshCompletion:(void (^)(BOOL))block{
+    NSString *temp = self.pageNum;
+    self.pageNum = [NSString stringWithFormat:@"%ld", self.orignalPageNum];
     [self loadData:^(BOOL success, id obj) {
         if (success) {
             self.dataSource = [NSMutableArray arrayWithArray:obj];
-            self.pageNum = self.orignalPageNum;
+        }else{
+            self.pageNum = temp;
         }
         if (block) {
             block(success);
@@ -45,20 +41,21 @@
 }
 
 - (void)YXYVC_PullUpLoadMore:(NSInteger)page completion:(void (^)(BOOL))block{
-    int pageNum = [self.pageNum intValue];
-    self.pageNum = [NSString stringWithFormat:@"%d", ++pageNum];
+    self.pageNum = [NSString stringWithFormat:@"%ld", ++self.pn];
     [self loadData:^(BOOL success, id obj) {
         if (success) {
             if (![obj isKindOfClass:[NSArray class]] || !((NSArray *)obj).count) {
-                int pageNum = [self.pageNum intValue];
-                self.pageNum = [NSString stringWithFormat:@"%d", --pageNum];
+                self.pn--;
                 if (block) {
                     block(success);
                 }
                 return ;
             }
             [self.dataSource addObjectsFromArray:obj];
+        }else{
+            self.pn--;
         }
+        
         if (block) {
             block(success);
         }
