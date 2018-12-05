@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger orignalPageNum;
 @property (nonatomic, assign) NSInteger pn;
 
-- (void)loadData:(void(^)(BOOL success, id obj))completion;
+
+- (void)loadData:(void(^)(BOOL success, id obj))completion isRefresh:(BOOL)refresh;
 
 @end
 
