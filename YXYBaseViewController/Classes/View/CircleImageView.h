@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CircleImageView : UIImageView
 
+@property (nonatomic, assign) CGFloat radius;
+
 @end
 
 NS_ASSUME_NONNULL_END

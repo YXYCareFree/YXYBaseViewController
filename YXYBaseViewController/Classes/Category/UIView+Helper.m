@@ -38,4 +38,5 @@
     self.clipsToBounds = YES;
     self.layer.cornerRadius = radius;
 }
+
 @end
