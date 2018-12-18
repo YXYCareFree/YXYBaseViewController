@@ -12,11 +12,9 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+
     if (self.radius) {
         [self addMaskLayer];
-    }else{
-        self.layer.cornerRadius = self.yxy_w / 2;
-        self.layer.masksToBounds = YES;
     }
 }
 
@@ -25,10 +23,21 @@
     if (!maskLayer) {
         maskLayer = [CAShapeLayer layer];
     }
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.radius];
+    CGRect rect = self.bounds;
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:self.radius];
     maskLayer.path = maskPath.CGPath;
-    maskLayer.frame = self.bounds;
+    maskLayer.frame = rect;
     self.layer.mask = maskLayer;
+
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:self.radius];
+//        maskLayer.path = maskPath.CGPath;
+//        maskLayer.frame = rect;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.layer.mask = maskLayer;
+//        });
+//    });
 }
 
 @end
