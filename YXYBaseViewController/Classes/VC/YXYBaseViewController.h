@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "YXYLabel.h"
 #import "MJRefresh.h"
+#import "YXYTableView.h"
 
 @protocol YXYBaseViewControlerRefreshDelegate <NSObject>
 
@@ -21,6 +22,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXYBaseViewController : UIViewController<UINavigationControllerDelegate>
+
+@property (nonatomic, strong) YXYTableView *yxy_tableView;
 
 @property (nonatomic, strong) UITableView *tableView;
 

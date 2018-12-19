@@ -96,8 +96,14 @@
         [self.refreshDelegate YXYVC_PullDownRefreshCompletion:^(BOOL success) {
             if (success) {
                 [self.tableView reloadData];
+                if (_yxy_tableView) {
+                    [self.yxy_tableView reloadData];
+                }
             }
             [self.tableView.mj_header endRefreshing];
+            if (_yxy_tableView) {
+                [self.yxy_tableView.mj_header endRefreshing];
+            }
         }];
     }
 }
@@ -107,8 +113,14 @@
         [self.refreshDelegate YXYVC_PullUpLoadMore:1 completion:^(BOOL success) {
             if (success) {
                 [self.tableView reloadData];
+                if (_yxy_tableView) {
+                    [self.yxy_tableView reloadData];
+                }
             }
             [self.tableView.mj_footer endRefreshing];
+            if (_yxy_tableView) {
+                [self.yxy_tableView.mj_footer endRefreshing];
+            }
         }];
     }
 }
@@ -118,6 +130,10 @@
     _refreshDelegate = refreshDelegate;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh)];
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullUpLoadMore)];
+    if (_yxy_tableView) {
+        self.yxy_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh)];
+        self.yxy_tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullUpLoadMore)];
+    }
 }
 
 - (void)setColorBack:(UIColor *)colorBack{
@@ -140,6 +156,22 @@
         [self.view addSubview:_tableView];
     }
     return _tableView;
+}
+
+- (YXYTableView *)yxy_tableView{
+    if (!_yxy_tableView) {
+        _yxy_tableView = [YXYTableView new];
+        _yxy_tableView.backgroundColor = [UIColor whiteColor];
+        _yxy_tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+        _yxy_tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        if (@available(iOS 11.0, *)) {
+            _yxy_tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        [self.view addSubview:_yxy_tableView];
+    }
+    return _yxy_tableView;
 }
 
 - (UIButton *)btnBack{
