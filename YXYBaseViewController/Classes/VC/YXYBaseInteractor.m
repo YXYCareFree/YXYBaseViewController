@@ -9,6 +9,8 @@
 
 @interface YXYBaseInteractor ()
 
+@property (nonatomic, weak) UITableView *tableView;
+
 @end
 
 @implementation YXYBaseInteractor
@@ -26,8 +28,9 @@
 }
 
 - (void)YXYVC_PullDownRefreshCompletion:(void (^)(BOOL))block{
-    NSString *temp = self.pageNum;
     self.pageNum = [NSString stringWithFormat:@"%ld", self.orignalPageNum];
+    self.pn = self.orignalPageNum;
+    NSString *temp = self.pageNum;
     [self loadData:^(BOOL success, id  _Nonnull obj) {
         if (success) {
             self.dataSource = [NSMutableArray arrayWithArray:obj];
@@ -51,6 +54,7 @@
                 }
                 return ;
             }
+            
             [self.dataSource addObjectsFromArray:obj];
         }else{
             self.pn--;

@@ -7,10 +7,7 @@
 //
 
 #import "YXYSelectView.h"
-#import "Masonry.h"
-
-#define kScreenWidth       [UIScreen mainScreen].bounds.size.width
-#define kScreenHeight      [UIScreen mainScreen].bounds.size.height
+#import "Define.h"
 
 @interface YXYSelectView ()
 

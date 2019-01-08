@@ -7,7 +7,9 @@
 
 #import "YXYNavigationController.h"
 
-@interface YXYNavigationController ()
+@interface YXYNavigationController ()<UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 
 @end
 
@@ -29,16 +31,30 @@
     
 //    self.navigationBar.translucent = YES;
     
-    UIPanGestureRecognizer  *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self.interactivePopGestureRecognizer.delegate action:@selector(handleNavigationTransition:)];
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self.interactivePopGestureRecognizer.delegate action:@selector(handleNavigationTransition:)];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:nil action:nil];
+    self.panGesture = pan;
     [self.view addGestureRecognizer:pan];
     pan.delegate = self;
-//    // 禁止之前手势
+    NSLog(@"pan==%p", pan);
+    // 禁止之前手势
     self.interactivePopGestureRecognizer.enabled = NO;
 }
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     if (![self checkForbidPanGuesture]) {
+
+        if (self.panGesture == gestureRecognizer) {
+            CGPoint point = [self.panGesture velocityInView:self.panGesture.view];
+            if (point.x > 0) {
+                //右滑
+                [self.panGesture addTarget:self.interactivePopGestureRecognizer.delegate action:@selector(handleNavigationTransition:)];
+            }else{
+                //左滑
+                [self.panGesture removeTarget:self.interactivePopGestureRecognizer.delegate action:@selector(handleNavigationTransition:)];
+            }
+        }
+
         // 注意：只有非根控制器才有滑动返回功能，根控制器没有。
         // 判断导航控制器是否只有一个子控制器，如果只有一个子控制器，肯定是根控制器
         return self.childViewControllers.count > 1;
@@ -62,7 +78,7 @@
 
 - (void)setTabbarTitle:(NSString *)title normalImage:(UIImage *)normalImage selectedImage:(UIImage *)selectedImage{
     self.tabBarItem.title = title;
-    self.tabBarItem.image = normalImage;
+    self.tabBarItem.image = [normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 

@@ -49,9 +49,11 @@
             if ([[DHGifImageOperation dh_contentTypeForImageData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageNameArray[i] ofType:nil]]] isEqualToString:@"gif"]) {
                 NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageNameArray[i] ofType:nil]];
                 imageView = (UIImageView *)[[DHGifImageOperation alloc] initWithFrame:imageView.frame gifImageData:localData];
+                imageView.contentMode = UIViewContentModeScaleAspectFill;
                 [guidePageView addSubview:imageView];
             } else {
                 imageView.image = [UIImage imageNamed:imageNameArray[i]];
+                imageView.contentMode = UIViewContentModeScaleAspectFill;
                 [guidePageView addSubview:imageView];
             }
         }
