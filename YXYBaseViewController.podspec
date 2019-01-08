@@ -5,8 +5,8 @@
 # Any lines starting with a # are optional, but their use is encouraged
 # To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
 
-#pod lib lint YXYBaseViewController.podspec --allow-warnings --verbose
-#pod trunk push YXYBaseViewController.podspec --allow-warnings --verbose
+#pod lib lint YXYBaseViewController.podspec --allow-warnings --verbose  --use-libraries
+#pod trunk push YXYBaseViewController.podspec --allow-warnings --verbose  --use-libraries
 
 Pod::Spec.new do |s|
     s.name             = 'YXYBaseViewController'
@@ -32,31 +32,37 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '8.0'
     
-#     s.source_files = 'YXYBaseViewController/Classes/**/*'
+#    s.source_files = 'YXYBaseViewController/Classes/**/*'
 
-    s.subspec 'Category' do |ss|
-        ss.source_files = 'YXYBaseViewController/Classes/Category/**/*'
+    s.subspec 'Category' do |category|
+        category.source_files = 'YXYBaseViewController/Classes/Category/**/*'
     end
 
-    s.subspec 'Network' do |ss|
-        ss.source_files = 'YXYBaseViewController/Classes/Network/**/*'
+    s.subspec 'Network' do |network|
+        network.source_files = 'YXYBaseViewController/Classes/Network/**/*'
+        network.dependency 'YXYBaseViewController/Category'
     end
 
-    s.subspec 'VC' do |ss|
-        ss.source_files = 'YXYBaseViewController/Classes/VC/**/*'
+    s.subspec 'VC' do |vc|
+        vc.source_files = 'YXYBaseViewController/Classes/VC/**/*'
+        vc.dependency 'YXYBaseViewController/Category'
+        vc.dependency 'YXYBaseViewController/YXYKit'
+        vc.dependency 'YXYBaseViewController/View'
     end
 
-   s.subspec 'View' do |ss|
-        ss.source_files = 'YXYBaseViewController/Classes/View/**/*'
+   s.subspec 'View' do |view|
+        view.source_files = 'YXYBaseViewController/Classes/View/**/*'
+        view.dependency 'YXYBaseViewController/Category'
     end
 
-    s.subspec 'YXYKit' do |ss|
-        ss.source_files = 'YXYBaseViewController/Classes/YXYKit/**/*'
+    s.subspec 'YXYKit' do |yykit|
+        yykit.source_files = 'YXYBaseViewController/Classes/YXYKit/**/*'
     end
-     s.resource_bundles = {
-       'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
-     }
     
+#     s.resource_bundles = {
+#       'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
+#     }
+
     # s.public_header_files = 'Pod/Classes/**/*.h'
     # s.frameworks = 'UIKit', 'MapKit'
     s.dependency 'AFNetworking'
