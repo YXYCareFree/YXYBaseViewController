@@ -14,9 +14,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+/**
+ 初始化pageNum
+ */
 @property (nonatomic, assign) NSInteger orignalPageNum;
+
+/**
+ 当前的pageNum(NSString *)
+ */
 @property (nonatomic, strong) NSString *pageNum;
+
+/**
+ 当前的页码pn（NSInteger）
+ */
 @property (nonatomic, assign) NSInteger pn;
+
+
+/**
+ 持有的tableView
+ */
+@property (nonatomic, strong) UITableView *tableView;
 
 
 - (void)loadData:(void(^)(BOOL success, id obj))completion isRefresh:(BOOL)refresh;

@@ -9,7 +9,6 @@
 
 @interface YXYBaseInteractor ()
 
-@property (nonatomic, weak) UITableView *tableView;
 
 @end
 
@@ -31,6 +30,9 @@
     self.pageNum = [NSString stringWithFormat:@"%ld", self.orignalPageNum];
     self.pn = self.orignalPageNum;
     NSString *temp = self.pageNum;
+    if (_tableView) {
+        [self.tableView.mj_footer resetNoMoreData];
+    }
     [self loadData:^(BOOL success, id  _Nonnull obj) {
         if (success) {
             self.dataSource = [NSMutableArray arrayWithArray:obj];
@@ -51,6 +53,9 @@
                 self.pn--;
                 if (block) {
                     block(success);
+                }
+                if (self->_tableView) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 }
                 return ;
             }

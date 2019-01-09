@@ -16,6 +16,7 @@
 
 #define KEY_WINDOW [UIApplication sharedApplication].delegate.window
 
+#define WEAKSELF           typeof(self) __weak weakSelf = self;
 
 
 #define iPhoneX  [UIScreen mainScreen].bounds.size.height >= 812
