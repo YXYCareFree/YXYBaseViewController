@@ -79,7 +79,6 @@
 }
 
 - (BOOL)checkNavBarHidden:(UIViewController *)vc{
-    return YES;
     BOOL hidden = NO;
     NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"YXYHideNavBarVC"];
     for (NSString *str in arr) {

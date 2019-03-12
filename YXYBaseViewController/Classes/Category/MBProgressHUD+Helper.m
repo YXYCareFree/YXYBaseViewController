@@ -11,13 +11,17 @@
 @implementation MBProgressHUD (Helper)
 
 + (void)showText:(NSString *)text{
+    [MBProgressHUD showText:text afterDelay:3];
+}
+
++ (void)showText:(NSString *)text afterDelay:(NSInteger)delay{
     MBProgressHUD *current = [MBProgressHUD HUDForView:KEY_WINDOW];
     [current hideAnimated:YES afterDelay:0];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:KEY_WINDOW animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.label.text = text;
     hud.removeFromSuperViewOnHide = YES;
-    [hud hideAnimated:YES afterDelay:2];
+    [hud hideAnimated:YES afterDelay:delay];
 }
 
 + (instancetype)showLoadingWithText:(NSString *)text{

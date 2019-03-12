@@ -11,6 +11,7 @@
 #import "Masonry.h"
 #import "UIView+Helper.h"
 #import "YXYTestInteractor.h"
+#import "YXYActionSheet.h"
 
 @interface YXYTestViewController ()
 
@@ -39,6 +40,13 @@
     self.tableView.dataSource = _interactor;
     self.refreshDelegate = _interactor;
     _interactor.vc = self;
+    
+    YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"123", @"234"] completion:^(NSInteger idx) {
+        
+    }];
+    [sheet.btnBottom setTitle:@"取消" forState:UIControlStateNormal];
+    [sheet.btnBottom setTitleColor:UIColor.redColor forState:UIControlStateNormal];
+    sheet.color = [UIColor blueColor];
     
 //    UILabel *label = [[UILabel alloc] init];
 //    label.text = @"我是YXYLable";

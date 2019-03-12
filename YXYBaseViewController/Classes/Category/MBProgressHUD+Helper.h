@@ -11,7 +11,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MBProgressHUD (Helper)
 
+/**
+ 默认3s后消失
+
+ @param text
+ */
 + (void)showText:(NSString *)text;
+
++ (void)showText:(NSString *)text afterDelay:(NSInteger)delay;
 
 + (instancetype)showLoadingWithText:(NSString *)text;
 
