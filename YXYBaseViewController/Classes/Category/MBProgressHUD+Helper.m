@@ -20,6 +20,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:KEY_WINDOW animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.label.text = text;
+    hud.label.numberOfLines = 0;
     hud.removeFromSuperViewOnHide = YES;
     [hud hideAnimated:YES afterDelay:delay];
 }

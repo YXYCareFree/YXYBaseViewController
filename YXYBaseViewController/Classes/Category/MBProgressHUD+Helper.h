@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  默认3s后消失
 
- @param text
+ @param text 展示的text
  */
 + (void)showText:(NSString *)text;
 
