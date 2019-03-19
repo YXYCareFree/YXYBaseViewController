@@ -113,6 +113,7 @@
         _btnBottom = [[UIButton alloc] initWithFrame:CGRectMake(15, kScreenHeight, kScreenWidth - 30, 44)];
         _btnBottom.layer.cornerRadius = 5;
         _btnBottom.backgroundColor = UIColor.whiteColor;
+        [_btnBottom setTitleColor:[UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0] forState:UIControlStateNormal];
         _btnBottom.clipsToBounds = YES;
         [_btnBottom setTitle:@"取消" forState:UIControlStateNormal];
         [_btnBottom addTarget:self action:@selector(btnCancelClicked) forControlEvents:UIControlEventTouchUpInside];

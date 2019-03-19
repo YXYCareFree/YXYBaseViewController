@@ -42,7 +42,7 @@
     _interactor.vc = self;
     
     YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"123", @"234"] completion:^(NSInteger idx) {
-        
+
     }];
     [sheet.btnBottom setTitle:@"取消" forState:UIControlStateNormal];
     [sheet.btnBottom setTitleColor:UIColor.redColor forState:UIControlStateNormal];
