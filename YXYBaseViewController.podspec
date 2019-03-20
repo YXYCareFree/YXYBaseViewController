@@ -41,6 +41,7 @@ Pod::Spec.new do |s|
     s.subspec 'Network' do |network|
         network.source_files = 'YXYBaseViewController/Classes/Network/**/*'
         network.dependency 'YXYBaseViewController/Category'
+        network.dependency 'YYCache'
     end
 
     s.subspec 'VC' do |vc|
@@ -68,7 +69,6 @@ Pod::Spec.new do |s|
     s.dependency 'AFNetworking'
     s.dependency 'MJRefresh'
     s.dependency 'Masonry'
-    s.dependency 'YYCache'
     s.dependency 'MBProgressHUD'
     s.dependency 'SDWebImage'
 end
