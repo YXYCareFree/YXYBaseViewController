@@ -7,7 +7,7 @@
 //
 
 #import "YXYSelectView.h"
-#import "Define.h"
+#import "YXYDefine.h"
 
 @interface YXYSelectView ()
 

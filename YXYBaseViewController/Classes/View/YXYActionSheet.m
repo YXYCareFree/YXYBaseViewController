@@ -6,7 +6,7 @@
 //
 
 #import "YXYActionSheet.h"
-#import "Define.h"
+#import "YXYDefine.h"
 
 @interface YXYActionSheet ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
@@ -98,7 +98,7 @@
         _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _tableView.rowHeight = 46;
         _tableView.bounces = NO;
-        _tableView.separatorColor = colorFromHex(@"eeeeee");
+        _tableView.separatorColor = ColorFromHex(0xeeeeee);
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.clipsToBounds = YES;

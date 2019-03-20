@@ -12,6 +12,7 @@
 #import "UIView+Helper.h"
 #import "YXYTestInteractor.h"
 #import "YXYActionSheet.h"
+#import "YXYDefine.h"
 
 @interface YXYTestViewController ()
 
@@ -29,7 +30,7 @@
     };
     NSLog(@"%@", [GlobalBlock class]);
     
-    self.view.backgroundColor = [UIColor yellowColor];
+    
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -42,7 +43,6 @@
     _interactor.vc = self;
     
     YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"123", @"234"] completion:^(NSInteger idx) {
-
     }];
     [sheet.btnBottom setTitle:@"取消" forState:UIControlStateNormal];
     [sheet.btnBottom setTitleColor:UIColor.redColor forState:UIControlStateNormal];
