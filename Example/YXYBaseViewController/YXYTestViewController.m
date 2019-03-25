@@ -13,6 +13,7 @@
 #import "YXYTestInteractor.h"
 #import "YXYActionSheet.h"
 #import "YXYDefine.h"
+#import "YXYAlertView.h"
 
 @interface YXYTestViewController ()
 
@@ -43,6 +44,7 @@
     _interactor.vc = self;
     
     YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"123", @"234"] completion:^(NSInteger idx) {
+        [YXYAlertView alertWithTitle:@"dqdq" completion:nil];
     }];
     [sheet.btnBottom setTitle:@"取消" forState:UIControlStateNormal];
     [sheet.btnBottom setTitleColor:UIColor.redColor forState:UIControlStateNormal];

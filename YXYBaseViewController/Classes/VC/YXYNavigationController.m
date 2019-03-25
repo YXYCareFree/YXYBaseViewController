@@ -91,7 +91,8 @@
 }
 
 - (void)back{
-    [self popViewControllerAnimated:YES];
+    NSInteger count = self.viewControllers.count;
+    [self.viewControllers[count - 1] performSelector:@selector(popViewController)];//用于检测内存泄漏
 }
 
 - (UIButton *)btnBack{

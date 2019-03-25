@@ -6,12 +6,8 @@
 //
 
 #import "YXYBaseViewController.h"
-#import "Masonry.h"
-
-//#define iPhoneX (([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO) || ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1624), [[UIScreen mainScreen] currentMode].size) : NO))
-#define iPhoneX  [UIScreen mainScreen].bounds.size.height >= 812
-
-#define STATUS_BAR_HEIGHT (iPhoneX ? 44.f : 20.f)
+#import "YXYDefine.h"
+#import "YXYAlertView.h"
 
 @interface YXYBaseViewController ()
 
@@ -72,6 +68,18 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEditing)];
     [self.view addGestureRecognizer:tap];
 }
+#pragma mark--检测内存泄漏
+- (void)popViewController{
+    __weak YXYBaseViewController *weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (weakSelf) {
+            NSString *title = [NSString stringWithFormat:@"%@没有被释放", NSStringFromClass(self.class)];
+            [YXYAlertView alertWithTitle:title completion:nil];
+        }
+    });
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark--UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     BOOL hidden = [self checkNavBarHidden:viewController];

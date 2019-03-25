@@ -8,7 +8,7 @@
 
 #import "YXYAppDelegate.h"
 #import "YXYTestViewController.h"
-//#import"
+
 @implementation YXYAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
