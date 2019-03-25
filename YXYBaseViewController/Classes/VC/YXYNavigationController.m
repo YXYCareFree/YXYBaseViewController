@@ -85,12 +85,7 @@
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     if (self.childViewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
-        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        backButton.frame = CGRectMake(0, 0, 50, 50);
-        [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-        self.btnBack = backButton;
-        backButton.imageEdgeInsets = UIEdgeInsetsMake(0, -45, 0, 0);
-        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.btnBack];
     }
     [super pushViewController:viewController animated:YES];
 }
@@ -99,4 +94,14 @@
     [self popViewControllerAnimated:YES];
 }
 
+- (UIButton *)btnBack{
+    if (!_btnBack) {
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        backButton.frame = CGRectMake(0, 0, 50, 50);
+        [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        backButton.imageEdgeInsets = UIEdgeInsetsMake(0, -45, 0, 0);
+        _btnBack = backButton;
+    }
+    return _btnBack;
+}
 @end
