@@ -1,9 +1,9 @@
 //
 //  YXYGCDTimer.m
-//  趣睡
+//
 //
 //  Created by apple on 2018/9/25.
-//  Copyright © 2018年 Yutao. All rights reserved.
+//  Copyright © 2018年 YXY. All rights reserved.
 //
 
 #import "YXYGCDTimer.h"
@@ -29,30 +29,26 @@
     gcd.target = target;
     gcd.selector = selector;
     gcd.interval = timeInterval;
-    gcd.using = YES;
-    dispatch_resume(gcd.timer);
     return gcd;
 }
 
 - (void)stop{
-    NSAssert(self.timer, @"YXYGCDTimer必须初始化");
     //不能多次调用suspend
-    if (!self.using) return;
+    if (!self.using || !_timer) return;
     dispatch_suspend(self.timer);
     self.using = NO;
 }
 
 - (void)cancel{
-    NSAssert(self.timer, @"YXYGCDTimer必须初始化");
-    NSAssert(self.using, @"YXYGCDTimer必须处于开启状态");
-    dispatch_cancel(self.timer);
-    self.timer = nil;
-    self.using = NO;
+    //不能多次调用cancel
+    if (_timer && self.using) {
+        dispatch_cancel(self.timer);
+        self.timer = nil;
+        self.using = NO;
+    }
 }
 
 - (void)resume{
-    NSAssert(self.timer, @"YXYGCDTimer必须初始化");
-    NSAssert(!self.using, @"YXYGCDTimer必须处于暂停状态");
     //不能多次调用resume
     if (self.using) return;
     dispatch_resume(self.timer);
