@@ -70,6 +70,7 @@
 }
 #pragma mark--检测内存泄漏
 - (void)popViewController{
+#ifdef DEBUG
     __weak YXYBaseViewController *weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (weakSelf) {
@@ -77,6 +78,8 @@
             [YXYAlertView alertWithTitle:title completion:nil];
         }
     });
+#else
+#endif
     [self.navigationController popViewControllerAnimated:YES];
 }
 
