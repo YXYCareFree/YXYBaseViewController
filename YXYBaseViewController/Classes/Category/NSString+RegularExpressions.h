@@ -22,6 +22,8 @@
 
 - (BOOL)isChinese;
 
+- (BOOL)isEnglish;
+
 - (BOOL)isIDCard;
 
 - (NSString *)mobileOperator;

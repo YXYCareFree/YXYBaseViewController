@@ -14,6 +14,7 @@
 #import "YXYActionSheet.h"
 #import "YXYDefine.h"
 #import "YXYAlertView.h"
+#import "NSString+RegularExpressions.h"
 
 @interface YXYTestViewController ()
 
@@ -30,6 +31,10 @@
         
     };
     NSLog(@"%@", [GlobalBlock class]);
+    
+    NSString *ch = @"是哦的";
+    NSString *eng = @"dxadawdwq";
+    NSLog(@"%@, %@", [ch isChinese] ? @"yes" : @"no", [eng isEnglish] ? @"yes" : @"no");
     
     
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
