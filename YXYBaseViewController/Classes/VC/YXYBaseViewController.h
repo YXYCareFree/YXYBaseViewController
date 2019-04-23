@@ -30,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<YXYBaseViewControlerRefreshDelegate> refreshDelegate;
 
 /**
+ GCD延迟函数的时间
+ */
+@property (nonatomic, assign) NSInteger gcdAfterTime;
+
+/**
  当VC的navbar隐藏的时候才会加载在View上
  */
 @property (nonatomic, strong) UIButton *btnBack;
@@ -52,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
  返回按钮的颜色
  */
 @property (nonatomic, strong) UIColor *colorBack;
+
+
 
 - (void)pullDownRefresh;
 
