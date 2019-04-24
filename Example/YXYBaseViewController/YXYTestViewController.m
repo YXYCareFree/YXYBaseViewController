@@ -49,7 +49,7 @@
     _interactor.vc = self;
     
     YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"123", @"234"] completion:^(NSInteger idx) {
-        [YXYAlertView alertWithMessage:@"xsa" fromeVC:self];
+        [YXYAlertView customAlertMessage:@"xsad" confirmTitle:nil confirmColor:nil cancelTitle:nil cancelColor:nil completion:nil];
     }];
     [sheet.btnBottom setTitle:@"取消" forState:UIControlStateNormal];
     [sheet.btnBottom setTitleColor:UIColor.redColor forState:UIControlStateNormal];

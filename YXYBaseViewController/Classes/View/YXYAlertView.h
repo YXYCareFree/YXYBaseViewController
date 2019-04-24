@@ -52,12 +52,12 @@ typedef void(^AlertBlock)(BOOL isConfirm);
 /**
  自定义(直接加载到keywindow)
  
- @param msg <#msg description#>
- @param confirmTitle <#confirmTitle description#>
- @param confirmColor <#confirmColor description#>
- @param cancelTitle <#cancelTitle description#>
- @param cancelColor <#cancelColor description#>
- @param completion <#completion description#>
+ @param msg msg
+ @param confirmTitle 右边→_→的按钮文字。默认为“确定”
+ @param confirmColor 默认黑色
+ @param cancelTitle 👈左边按钮的文字。默认为“取消”
+ @param cancelColor 默认黑色
+ @param completion 回调
  */
 + (void)customAlertMessage:(NSString *)msg confirmTitle:(NSString *)confirmTitle confirmColor:(UIColor *)confirmColor cancelTitle:(NSString *)cancelTitle cancelColor:(UIColor *)cancelColor completion:(AlertBlock)completion;
 

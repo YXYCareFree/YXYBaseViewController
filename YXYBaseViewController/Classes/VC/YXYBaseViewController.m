@@ -75,8 +75,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((weakSelf.gcdAfterTime + 2) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (weakSelf) {
             NSString *title = [NSString stringWithFormat:@"%@没有被释放", NSStringFromClass(weakSelf.class)];
-//            [YXYAlertView alertWithTitle:title completion:nil];
-            [YXYAlertView alertWithMessage:title fromeVC:weakSelf];
+            [YXYAlertView customAlertMessage:title confirmTitle:nil confirmColor:nil cancelTitle:nil cancelColor:nil completion:nil];
         }
     });
 #else

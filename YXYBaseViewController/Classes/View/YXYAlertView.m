@@ -67,8 +67,8 @@
     YXYAlertView *alert = [[YXYAlertView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     alert.block = completion;
     alert.lblTitle.title(msg).color(ColorFromHex(0x4d4d4d)).titleFont(Font_PingFang_Medium(18));
-    alert.btnConfirm.titleFont(Font(18)).color(confirmColor, UIControlStateNormal).title(confirmTitle, UIControlStateNormal);
-    alert.btnCancel.titleFont(Font(18)).color(cancelColor, UIControlStateNormal).title(cancelTitle, UIControlStateNormal);
+    alert.btnConfirm.titleFont(Font(18)).color(confirmColor?:UIColor.blackColor, UIControlStateNormal).title(confirmTitle?:@"确定", UIControlStateNormal);
+    alert.btnCancel.titleFont(Font(18)).color(cancelColor?:UIColor.blackColor, UIControlStateNormal).title(cancelTitle?:@"取消", UIControlStateNormal);
     [alert setUI];
     [[UIApplication sharedApplication].keyWindow addSubview:alert];
 }
