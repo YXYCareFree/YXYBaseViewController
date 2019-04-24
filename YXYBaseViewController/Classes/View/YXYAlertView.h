@@ -18,27 +18,48 @@ typedef void(^AlertBlock)(BOOL isConfirm);
 
 @property (nonatomic, copy) AlertBlock block;
 
-+ (instancetype)alertWithTitle:(NSString *)title completion:(AlertBlock)completion;
-
-+ (instancetype)alertWithTitle:(NSString *)title confirmTitle:(NSString *)confirmTitle cancelTitle:(NSString *)cancelTitle completion:(AlertBlock)completion;
-
 /**
- 系统样式的弹窗提示，只有确定按钮
- @param title title
+ 系统样式的弹窗提示，只有确定按钮，默认title为“提示”
+ @param message message
  @param vc 从哪个VC上弹窗
  */
-+ (void)alertWithTitle:(NSString *)title fromeVC:(UIViewController *)vc;
++ (void)alertWithMessage:(NSString *)message fromeVC:(UIViewController *)vc;
 
 
 /**
- 系统样式的弹窗提示，只有确定按钮
- @param title title
+ 系统样式的弹窗提示，只有确定按钮，默认title为“提示”
+ @param message message
  @param vc 从哪个VC上弹窗
  @param completion 回调
  */
-+ (void)alertWithTitle:(NSString *)title fromeVC:(UIViewController *)vc completion:(AlertBlock)completion;
++ (void)alertWithMessage:(NSString *)message fromeVC:(UIViewController *)vc completion:(AlertBlock)completion;
+/**
+ 系统样式的弹窗提示，只有确定按钮，默认title为“提示”
+ @param message message
+ @param vc 从哪个VC上弹窗
+ @param completion 回调
+ */
++ (void)alertWithMessage:(NSString *)message confirmTitle:(NSString *)confirmTitle cancelTitle:(NSString *)cancelTitle fromeVC:(UIViewController *)vc completion:(AlertBlock)completion;
+/**
+ 系统样式的弹窗提示
+ @param title title
+ @param message message
+ @param vc 从哪个VC上弹窗
+ @param completion 回调
+ */
++ (void)alertWithTitle:(NSString *)title message:(NSString *)message confirmTitle:(NSString *)confirmTitle cancelTitle:(NSString *)cancelTitle fromeVC:(UIViewController *)vc completion:(AlertBlock)completion;
 
-+ (void)alertWithTitle:(NSString *)title confirmTitle:(NSString *)confirmTitle cancelTitle:(NSString *)cancelTitle fromeVC:(UIViewController *)vc completion:(AlertBlock)completion;
+/**
+ 自定义(直接加载到keywindow)
+ 
+ @param msg <#msg description#>
+ @param confirmTitle <#confirmTitle description#>
+ @param confirmColor <#confirmColor description#>
+ @param cancelTitle <#cancelTitle description#>
+ @param cancelColor <#cancelColor description#>
+ @param completion <#completion description#>
+ */
++ (void)customAlertMessage:(NSString *)msg confirmTitle:(NSString *)confirmTitle confirmColor:(UIColor *)confirmColor cancelTitle:(NSString *)cancelTitle cancelColor:(UIColor *)cancelColor completion:(AlertBlock)completion;
 
 @end
 

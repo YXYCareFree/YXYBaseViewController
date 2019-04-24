@@ -21,6 +21,9 @@
 
 #define ColorFromHex(hex) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16))/255.0 green:((float)((hex & 0xFF00) >> 8))/255.0 blue:((float)(hex & 0xFF))/255.0 alpha:1.0]
 
+#define Font_PingFang_Medium(x) [UIFont fontWithName:@"PingFangSC-Medium" size:x]
+#define Font(x) [UIFont fontWithName:@"PingFangSC-Regular" size:x]
+
 
 #define iPhoneX  [UIScreen mainScreen].bounds.size.height >= 812
 #define STATUS_BAR_HEIGHT (iPhoneX ? 44.f : 20.f)

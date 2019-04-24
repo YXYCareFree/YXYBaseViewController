@@ -8,132 +8,167 @@
 
 #import "YXYAlertView.h"
 #import "YXYDefine.h"
+#import "YXYLabel.h"
+#import "YXYButton.h"
 
 #define Width   301
 #define Height  121
+
+@interface YXYAlertView ()
+
+@property (nonatomic, strong) YXYLabel *lblTitle;
+@property (nonatomic, strong) YXYButton *btnConfirm;
+@property (nonatomic, strong) YXYButton *btnCancel;
+
+@end
 
 @implementation YXYAlertView{
     UIButton * _cancelBtn;
     UILabel * _split;
 }
 
-+ (void)alertWithTitle:(NSString *)title fromeVC:(UIViewController *)vc{
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:title preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    }];
-    [alert addAction:confirm];
-    [vc presentViewController:alert animated:YES completion:nil];
++ (void)alertWithMessage:(NSString *)message fromeVC:(UIViewController *)vc{
+    [YXYAlertView alertWithTitle:nil message:message confirmTitle:nil cancelTitle:nil fromeVC:vc completion:nil];
 }
 
-+ (void)alertWithTitle:(NSString *)title fromeVC:(UIViewController *)vc completion:(AlertBlock)completion{
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:title preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        completion(YES);
-    }];
-    [alert addAction:confirm];
-    [vc presentViewController:alert animated:YES completion:nil];
++ (void)alertWithMessage:(NSString *)message fromeVC:(UIViewController *)vc completion:(AlertBlock)completion{
+    [YXYAlertView alertWithTitle:nil message:message confirmTitle:nil cancelTitle:nil fromeVC:vc completion:completion];
 }
 
-+ (void)alertWithTitle:(NSString *)title confirmTitle:(NSString *)confirmTitle cancelTitle:(NSString *)cancelTitle fromeVC:(UIViewController *)vc completion:(AlertBlock)completion{
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:title preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * confirm = [UIAlertAction actionWithTitle:confirmTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        completion(YES);
-    }];
-    [alert addAction:confirm];
-    UIAlertAction * cancel = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        completion(NO);
-    }];
-    [alert addAction:cancel];
-    [vc presentViewController:alert animated:YES completion:nil];
++ (void)alertWithMessage:(NSString *)message confirmTitle:(NSString *)confirmTitle cancelTitle:(NSString *)cancelTitle fromeVC:(UIViewController *)vc completion:(AlertBlock)completion{
+    [YXYAlertView alertWithTitle:nil message:message confirmTitle:confirmTitle cancelTitle:cancelTitle fromeVC:vc completion:completion];
 }
 
-+ (instancetype)alertWithTitle:(NSString *)title completion:(AlertBlock)completion{
-    YXYAlertView * alertView = [[self alloc] initWithFrame:[UIScreen mainScreen].bounds title:title confirmTitle:@"确认" cancelTitle:@"取消" completion:completion];
-    return alertView;
-}
-
-+ (instancetype)alertWithTitle:(NSString *)title confirmTitle:(NSString *)confirmTitle cancelTitle:(NSString *)cancelTitle completion:(AlertBlock)completion{
-    YXYAlertView * alertView = [[self alloc] initWithFrame:[UIScreen mainScreen].bounds title:title confirmTitle:confirmTitle cancelTitle:cancelTitle completion:completion];
-    return alertView;
++ (void)alertWithTitle:(NSString *)title message:(NSString *)message confirmTitle:(NSString *)confirmTitle cancelTitle:(NSString *)cancelTitle fromeVC:(UIViewController *)vc completion:(AlertBlock)completion{
     
-}
-
-
-- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title confirmTitle:(NSString *)confirmTitle cancelTitle:(NSString *)cancelTitle completion:(AlertBlock)completion{
-    if (self = [super initWithFrame:frame]) {
-        self.title = title;
-        self.block = completion;
-        self.cancelTitle = cancelTitle;
-        self.confirmTitle = confirmTitle;
-        [self setupView];
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:title?:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * confirm = [UIAlertAction actionWithTitle:confirmTitle?:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (completion) {
+            completion(YES);
+        }
+    }];
+    [alert addAction:confirm];
+    
+    if (cancelTitle) {
+        UIAlertAction * cancel = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            if (completion) {
+                completion(NO);
+            }
+        }];
+        [alert addAction:cancel];
     }
-    return self;
+    if ([vc isKindOfClass:[UIViewController class]]) {
+        [vc presentViewController:alert animated:YES completion:nil];
+    }
 }
 
-- (void)setupView{
-    
-    UIView * view = [[UIView alloc] initWithFrame:self.bounds];
-    view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-    [self addSubview:view];
-    
-    UIView * centerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Width, Height)];
-    centerView.center = self.center;
-    centerView.layer.cornerRadius = 2;
-    centerView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:centerView];
-    
-    _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 81, (Width - 1) / 2, 40)];
-    [_cancelBtn setTitle:self.cancelTitle forState:UIControlStateNormal];
-    [_cancelBtn setTitleColor:ColorFromHex(0x666666) forState:UIControlStateNormal];
-    [_cancelBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
-    [centerView addSubview:_cancelBtn];
-    
-    UIButton * confrmBtn = [[UIButton alloc] initWithFrame:CGRectMake((Width - 1) / 2 + 1, 81, (Width - 1) / 2, 40)];
-    [confrmBtn setTitleColor:UIColor.redColor forState:UIControlStateNormal];
-    [confrmBtn setTitle:self.confirmTitle forState:UIControlStateNormal];
-    [confrmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
-    [centerView addSubview:confrmBtn];
-    
-    _split = [[UILabel alloc] initWithFrame:CGRectMake((Width - 1) / 2, 81, 1, 40)];
-    _split.backgroundColor = ColorFromHex(0x999999);
-    [centerView addSubview:_split];
-    UILabel * split = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, Width, 1)];
-    split.backgroundColor = ColorFromHex(0x999999);
-    [centerView addSubview:split];
-    
-    UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, Width, 40)];
-    titleLabel.text = self.title;
-    titleLabel.numberOfLines = 0;
-    titleLabel.font = [UIFont systemFontOfSize:15];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = ColorFromHex(0x333333);
-    [centerView addSubview:titleLabel];
-    
-    [KEY_WINDOW addSubview:self];
+#pragma mark Custom
++ (void)customAlertMessage:(NSString *)msg confirmTitle:(NSString *)confirmTitle confirmColor:(UIColor *)confirmColor cancelTitle:(NSString *)cancelTitle cancelColor:(UIColor *)cancelColor completion:(AlertBlock)completion{
+    YXYAlertView *alert = [[YXYAlertView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    alert.block = completion;
+    alert.lblTitle.title(msg).color(ColorFromHex(0x4d4d4d)).titleFont(Font_PingFang_Medium(18));
+    alert.btnConfirm.titleFont(Font(18)).color(confirmColor, UIControlStateNormal).title(confirmTitle, UIControlStateNormal);
+    alert.btnCancel.titleFont(Font(18)).color(cancelColor, UIControlStateNormal).title(cancelTitle, UIControlStateNormal);
+    [alert setUI];
+    [[UIApplication sharedApplication].keyWindow addSubview:alert];
 }
 
-- (void)cancel{
+- (void)setUI{
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     
+    UIView *vBg = [[UIView alloc] init];
+    vBg.backgroundColor = UIColor.whiteColor;
+    vBg.layer.cornerRadius = 5;
+    vBg.clipsToBounds = YES;
+    [self addSubview:vBg];
+    [vBg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.left.equalTo(@47);
+        make.right.equalTo(@(-47));
+    }];
+    
+    [vBg addSubview:self.lblTitle];
+    [vBg addSubview:self.btnConfirm];
+    [vBg addSubview:self.btnCancel];
+    
+    [self.lblTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@20);
+        make.left.equalTo(@20);
+        make.right.equalTo(@(-20));
+    }];
+    
+    UIView *vH = [[UIView alloc] init];
+    vH.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
+    [vBg addSubview:vH];
+    [vH mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.lblTitle.mas_bottom).offset(20);
+        make.height.equalTo(@1);
+        make.left.right.equalTo(@0);
+    }];
+    
+    UIView *v = [[UIView alloc] init];
+    v.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
+    [vBg addSubview:v];
+    [v mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(vH.mas_bottom);
+        make.centerX.equalTo(vH);
+        make.bottom.equalTo(vBg);
+        make.width.equalTo(@1);
+    }];
+    
+    [self.btnCancel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(vH.mas_bottom).offset(0);
+        make.centerX.equalTo(vBg).offset(-(kScreenWidth - 47 * 2) / 4);
+        make.height.equalTo(@48);
+        make.left.bottom.equalTo(@0);
+        make.width.equalTo(@(kScreenWidth / 2 - 47));
+    }];
+    
+    [self.btnConfirm mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(vH.mas_bottom).offset(0);
+        make.centerX.equalTo(vBg).offset((kScreenWidth - 47 * 2) / 4);
+        make.height.equalTo(@48);
+        make.right.bottom.equalTo(@0);
+        make.width.equalTo(@(kScreenWidth / 2 - 48));
+    }];
+}
+
+- (void)btnCancelClicked{
     if (self.block) {
         self.block(NO);
     }
     [self removeFromSuperview];
 }
 
-- (void)confirm{
+- (void)btnConfirmClicked{
     if (self.block) {
         self.block(YES);
     }
     [self removeFromSuperview];
 }
 
-- (void)setCancelTitle:(NSString *)cancelTitle{
-    _cancelTitle = cancelTitle;
-    [_cancelBtn setTitle:cancelTitle forState:UIControlStateNormal];
-    if ([cancelTitle isEqualToString:@""]) {
-        [_cancelBtn removeFromSuperview];
-        [_split removeFromSuperview];
+- (YXYLabel *)lblTitle{
+    if (!_lblTitle) {
+        _lblTitle = [[YXYLabel alloc] init];
+        _lblTitle.numberOfLines = 0;
+        _lblTitle.alignment(NSTextAlignmentCenter);
     }
+    return _lblTitle;
 }
 
+- (YXYButton *)btnCancel{
+    if (!_btnCancel) {
+        _btnCancel = [[YXYButton alloc] init];
+        [_btnCancel addTarget:self action:@selector(btnCancelClicked) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnCancel;
+}
+
+- (YXYButton *)btnConfirm{
+    if (!_btnConfirm) {
+        _btnConfirm = [[YXYButton alloc] init];
+        [_btnConfirm addTarget:self action:@selector(btnConfirmClicked) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnConfirm;
+}
 @end
