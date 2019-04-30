@@ -60,6 +60,9 @@ Pod::Spec.new do |s|
         yykit.source_files = 'YXYBaseViewController/Classes/YXYKit/**/*'
     end
     
+    s.subspec 'YXYMediator' do |mediator|
+        mediator.source_files = 'YXYBaseViewController/Classes/YXYMediator/**/*'
+    end
 #     s.resource_bundles = {
 #       'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
 #     }
