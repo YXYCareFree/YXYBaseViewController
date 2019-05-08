@@ -62,7 +62,7 @@ NSString * const kYXYMediatorParamsKeySwiftTargetModuleName = @"kYXYMediatorPara
 }
 
 - (id)performTarget:(NSString *)targetName action:(NSString *)actionName params:(NSDictionary *)params shouldCacheTarget:(BOOL)shouldCacheTarget{
-    NSString *swiftModuleName = params[kYXYMediatorParamsKeySwiftTargetModuleName];
+    NSString *swiftModuleName = [params valueForKey:kYXYMediatorParamsKeySwiftTargetModuleName] ?: @"";
     
     // generate target
     NSString *targetClassString = nil;
