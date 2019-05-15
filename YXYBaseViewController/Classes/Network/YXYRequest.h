@@ -15,7 +15,7 @@ typedef NS_ENUM (NSInteger, YXYHTTPMethod){
 typedef void(^YXYRequestSuccessBlock)(id obj);
 typedef void(^YXYRequestFailureBlock)(NSString *msg, NSError *error);
 
-NS_ASSUME_NONNULL_BEGIN
+//NS_ASSUME_NONNULL_BEGIN
 
 @interface YXYRequest : NSObject
 
@@ -43,6 +43,27 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) Class modelClass;
 
+
+
+- (YXYRequest *(^)(NSString *apiName))APIName;
+
+- (YXYRequest *(^)(NSDictionary *params))Params;
+
+- (YXYRequest *(^)(BOOL isCache))cache;
+
+- (YXYRequest *(^)(YXYHTTPMethod method))Method;
+
+- (YXYRequest *(^)(YXYRequestSuccessBlock succ))succ;
+
+- (YXYRequest *(^)(YXYRequestFailureBlock fail))fail;
+
+- (YXYRequest *(^)(BOOL showErrorMsg))ShowErrorMsg;
+
+/**
+ 请求结果需要转化的Model的类名
+ */
+- (YXYRequest *(^)(NSString *modelName))modelName;
+
 @end
 
-NS_ASSUME_NONNULL_END
+//NS_ASSUME_NONNULL_END

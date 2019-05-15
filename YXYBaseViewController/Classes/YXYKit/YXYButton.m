@@ -11,35 +11,35 @@
 @implementation YXYButton
 
 - (YXYButton *(^)(UIFont *))titleFont{
-    return ^id(UIFont *font){
+    return ^YXYButton *(UIFont *font){
         self.titleLabel.font = font;
         return self;
     };
 }
 
 - (YXYButton *(^)(UIColor *, UIControlState))color{
-    return ^id(UIColor *color, UIControlState state){
+    return ^YXYButton *(UIColor *color, UIControlState state){
         [self setTitleColor:color forState:state];
         return self;
     };
 }
 
 - (YXYButton *(^)(NSString *, UIControlState))title{
-    return ^id(NSString *title, UIControlState state){
+    return ^YXYButton *(NSString *title, UIControlState state){
         [self setTitle:title forState:state];
         return self;
     };
 }
 
 - (YXYButton *(^)(UIImage *, UIControlState))bgImgae{
-    return ^id(UIImage *image, UIControlState state){
+    return ^YXYButton *(UIImage *image, UIControlState state){
         [self setBackgroundImage:image forState:state];
         return self;
     };
 }
 
 - (YXYButton *(^)(UIImage *, UIControlState))setImgae{
-    return ^id(UIImage *image, UIControlState state){
+    return ^YXYButton *(UIImage *image, UIControlState state){
         [self setImage:image forState:state];
         return self;
     };

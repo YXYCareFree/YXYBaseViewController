@@ -15,6 +15,7 @@
 #import "YXYDefine.h"
 #import "YXYAlertView.h"
 #import "NSString+RegularExpressions.h"
+#import "YXYRequest.h"
 
 @interface YXYTestViewController ()
 
@@ -31,12 +32,11 @@
         
     };
     NSLog(@"%@", [GlobalBlock class]);
-    
+
     NSString *ch = @"是哦的";
     NSString *eng = @"dxadawdwq";
     NSLog(@"%@, %@", [ch isChinese] ? @"yes" : @"no", [eng isEnglish] ? @"yes" : @"no");
-    
-    
+        
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
