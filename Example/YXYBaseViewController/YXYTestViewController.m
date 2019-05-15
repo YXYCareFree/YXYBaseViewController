@@ -29,10 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
-    [YXYPickView initWithDataSource:@[@"1", @"2"] title:@"title" confirmBtnColor:nil cancelBtnColor:nil completion:^(NSString *str, NSInteger idx) {
-        
-    }];
         
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -45,7 +41,7 @@
     self.refreshDelegate = _interactor;
     _interactor.vc = self;
     
-    YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"123", @"234"] completion:^(NSInteger idx) {
+    YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20"] completion:^(NSInteger idx) {
         [YXYAlertView customAlertMessage:@"xsad" confirmTitle:nil confirmColor:nil cancelTitle:nil cancelColor:nil completion:nil];
     }];
     [sheet.btnBottom setTitle:@"取消" forState:UIControlStateNormal];
