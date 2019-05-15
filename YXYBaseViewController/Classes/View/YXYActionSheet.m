@@ -20,15 +20,20 @@
 @implementation YXYActionSheet
 
 + (instancetype)actionSheetWithDataSource:(NSArray *)dataSource completion:(void (^)(NSInteger))completion{
-    YXYActionSheet *sheet = [[YXYActionSheet alloc] initWithDataSource:dataSource completion:completion];
-    [KEY_WINDOW addSubview:sheet];
+    YXYActionSheet *sheet = [[YXYActionSheet alloc] initWithDataSource:dataSource delegate:nil completion:completion];
     return sheet;
 }
 
-- (instancetype)initWithDataSource:(NSArray *)dataSource completion:(void (^)(NSInteger))completion{
++ (instancetype)actionSheetWithDataSource:(NSArray *)dataSource delegate:(id)delegate completion:(void (^)(NSInteger))completion{
+    YXYActionSheet *sheet = [[YXYActionSheet alloc] initWithDataSource:dataSource delegate:delegate completion:completion];
+    return sheet;
+}
+
+- (instancetype)initWithDataSource:(NSArray *)dataSource delegate:(id)delegate completion:(void (^)(NSInteger))completion{
     if (self = [super init]) {
         self.dataSource = dataSource;
         self.ActionSheetBlock = completion;
+        self.delegate = delegate;
         [self setUI];
     }
     return self;
@@ -37,7 +42,8 @@
 - (void)setUI{
     self.frame = [UIScreen mainScreen].bounds;
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.3];
-    
+    [KEY_WINDOW addSubview:self];
+
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     tap.delegate = self;
     [self addGestureRecognizer:tap];
@@ -64,8 +70,7 @@
     }];
 }
 #pragma mark - UIGestureRecognizerDelegate
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
     if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
         return NO;
@@ -79,6 +84,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(YXYActionSheetCellForRowAtIndexPath:tableView:)]) {
+        return [self.delegate YXYActionSheetCellForRowAtIndexPath:indexPath tableView:tableView];
+    }
     YXYActionSheetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXYActionSheetID" forIndexPath:indexPath];
     cell.lblTitle.text = self.dataSource[indexPath.row];
     cell.lblTitle.font = self.font;
@@ -103,7 +111,11 @@
         _tableView.dataSource = self;
         _tableView.clipsToBounds = YES;
         _tableView.layer.cornerRadius = 5;
-        [_tableView registerClass:[YXYActionSheetCell class] forCellReuseIdentifier:@"YXYActionSheetID"];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(YXYActionSheetRegisterCell:)]) {
+            [self.delegate YXYActionSheetRegisterCell:_tableView];
+        }else{
+            [_tableView registerClass:[YXYActionSheetCell class] forCellReuseIdentifier:@"YXYActionSheetID"];
+        }
     }
     return _tableView;
 }

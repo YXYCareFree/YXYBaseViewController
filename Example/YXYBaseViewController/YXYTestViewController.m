@@ -16,6 +16,7 @@
 #import "YXYAlertView.h"
 #import "NSString+RegularExpressions.h"
 #import "YXYRequest.h"
+#import "YXYPickView.h"
 
 @interface YXYTestViewController ()
 
@@ -28,14 +29,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    void(^GlobalBlock)() = ^{
-        
-    };
-    NSLog(@"%@", [GlobalBlock class]);
 
-    NSString *ch = @"是哦的";
-    NSString *eng = @"dxadawdwq";
-    NSLog(@"%@, %@", [ch isChinese] ? @"yes" : @"no", [eng isEnglish] ? @"yes" : @"no");
+    [YXYPickView initWithDataSource:@[@"1", @"2"] title:@"title" confirmBtnColor:nil cancelBtnColor:nil completion:^(NSString *str, NSInteger idx) {
+        
+    }];
         
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

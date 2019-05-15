@@ -1,5 +1,5 @@
 //
-//  YXYSelectView.h
+//  YXYPickView.h
 //  GanJie
 //
 //  Created by 杨肖宇 on 2017/10/7.
@@ -10,7 +10,10 @@
 
 typedef void(^SelectBlock)(NSString * str, NSInteger idx);
 
-@interface YXYSelectView : UIView<UIPickerViewDelegate, UIPickerViewDataSource>
+/**
+ 单列的PickView
+ */
+@interface YXYPickView : UIView<UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, copy) SelectBlock block;
 

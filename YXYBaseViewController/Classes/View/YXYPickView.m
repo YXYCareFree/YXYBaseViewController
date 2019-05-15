@@ -1,15 +1,15 @@
 //
-//  YXYSelectView.m
+//  YXYPickView.m
 //  GanJie
 //
 //  Created by 杨肖宇 on 2017/10/7.
 //  Copyright © 2017年 yxy. All rights reserved.
 //
 
-#import "YXYSelectView.h"
+#import "YXYPickView.h"
 #import "YXYDefine.h"
 
-@interface YXYSelectView ()
+@interface YXYPickView ()
 
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) NSString *selectedStr;
@@ -21,10 +21,10 @@
 
 @end
 
-@implementation YXYSelectView
+@implementation YXYPickView
 
 + (instancetype)initWithDataSource:(NSArray *)dataSource title:(NSString *)title confirmBtnColor:(UIColor *)confirmColor cancelBtnColor:(UIColor *)cancelColor completion:(SelectBlock)completion{
-    YXYSelectView * select = [YXYSelectView new];
+    YXYPickView * select = [YXYPickView new];
     select.colorCancel = cancelColor;
     select.colorConfirm = confirmColor;
     select.block = completion;
@@ -35,7 +35,7 @@
 }
 
 + (instancetype)initWithDataSource:(NSArray *)dataSource confirmBtnColor:(UIColor *)confirmColor cancelBtnColor:(UIColor *)cancelColor completion:(SelectBlock)completion{
-    YXYSelectView * select = [YXYSelectView new];
+    YXYPickView * select = [YXYPickView new];
     select.colorCancel = cancelColor;
     select.colorConfirm = confirmColor;
     select.block = completion;
@@ -91,12 +91,7 @@
         }];
     }
     
-    for (UIView *subView in [UIApplication sharedApplication].keyWindow.subviews) {
-        if ([subView isKindOfClass:[self class]]) {
-            return;
-        }
-    }
-    [[UIApplication sharedApplication].keyWindow addSubview:self];
+    [KEY_WINDOW addSubview:self];
     
     [UIView animateWithDuration:.3 animations:^{
         contentView.frame = CGRectMake(0, kScreenHeight - 240, kScreenWidth, 240);
