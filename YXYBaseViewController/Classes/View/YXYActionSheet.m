@@ -77,11 +77,10 @@
 }
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
-        return NO;
-    }
-    return  YES;
+    //点落在tableView上，事件由tableView处理
+    CGPoint point = [touch locationInView:self];
+    point = [self.tableView.layer convertPoint:point fromLayer:self.layer];
+    return ![self.tableView.layer containsPoint:point];
 }
 
 #pragma mark--UITableViewDelegate UITableViewDataSource

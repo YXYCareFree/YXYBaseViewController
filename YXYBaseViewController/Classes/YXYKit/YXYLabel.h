@@ -10,6 +10,9 @@
 
 @interface YXYLabel : UILabel
 
++ (YXYLabel *)labelWithTitle:(NSString *)title font:(UIFont *)font color:(UIColor *)color alignment:(NSTextAlignment)alignment;
+
+
 - (YXYLabel *(^)(NSString *title))title;
 
 - (YXYLabel *(^)(UIFont *font))titleFont;

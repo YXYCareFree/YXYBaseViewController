@@ -10,6 +10,12 @@
 
 @implementation YXYLabel
 
++ (YXYLabel *)labelWithTitle:(NSString *)title font:(UIFont *)font color:(UIColor *)color alignment:(NSTextAlignment)alignment{
+    YXYLabel *label = YXYLabel.new;
+    label.title(title).titleFont(font).color(color).alignment(alignment);
+    return label;
+}
+
 - (YXYLabel *(^)(NSString *))title{
     return ^YXYLabel *(NSString *title){
         self.text = title;
