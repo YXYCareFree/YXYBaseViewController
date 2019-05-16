@@ -8,7 +8,7 @@
 #import "YXYActionSheet.h"
 #import "YXYDefine.h"
 
-@interface YXYActionSheet ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
+@interface YXYActionSheet ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, copy) void (^ActionSheetBlock)(NSInteger idx);
@@ -45,10 +45,6 @@
     self.frame = [UIScreen mainScreen].bounds;
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.3];
     [KEY_WINDOW addSubview:self];
-
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
-    tap.delegate = self;
-    [self addGestureRecognizer:tap];
     
     CGFloat esH = self.dataSource.count * self.rowH;
     CGFloat maxH = kScreenHeight - NAVIGATION_BAR_HEIGHT - 17 - 44 - HOME_INDICATOR_HEIGHT;
@@ -75,12 +71,9 @@
         [self removeFromSuperview];
     }];
 }
-#pragma mark - UIGestureRecognizerDelegate
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    //点落在tableView上，事件由tableView处理
-    CGPoint point = [touch locationInView:self];
-    point = [self.tableView.layer convertPoint:point fromLayer:self.layer];
-    return ![self.tableView.layer containsPoint:point];
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self dismiss];
 }
 
 #pragma mark--UITableViewDelegate UITableViewDataSource
