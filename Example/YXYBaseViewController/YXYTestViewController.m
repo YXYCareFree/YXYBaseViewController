@@ -29,8 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    YXYButton *btn = YXYButton.new;
     
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

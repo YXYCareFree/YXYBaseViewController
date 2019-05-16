@@ -44,25 +44,7 @@ typedef void(^YXYRequestFailureBlock)(NSString *msg, NSError *error);
 @property (nonatomic, assign) Class modelClass;
 
 
-
-- (YXYRequest *(^)(NSString *apiName))APIName;
-
-- (YXYRequest *(^)(NSDictionary *params))Params;
-
-- (YXYRequest *(^)(BOOL isCache))cache;
-
-- (YXYRequest *(^)(YXYHTTPMethod method))Method;
-
-- (YXYRequest *(^)(YXYRequestSuccessBlock succ))succ;
-
-- (YXYRequest *(^)(YXYRequestFailureBlock fail))fail;
-
-- (YXYRequest *(^)(BOOL showErrorMsg))ShowErrorMsg;
-
-/**
- 请求结果需要转化的Model的类名
- */
-- (YXYRequest *(^)(NSString *modelName))modelName;
++ (YXYRequest *)initWithAPIName:(NSString *)apiName params:(NSDictionary *)params modelName:(NSString *)modelName succ:(YXYRequestSuccessBlock)succ fail:(YXYRequestFailureBlock)fail;
 
 @end
 

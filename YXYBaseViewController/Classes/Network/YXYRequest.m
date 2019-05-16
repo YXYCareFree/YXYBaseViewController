@@ -22,60 +22,19 @@
     return self;
 }
 
-- (YXYRequest * _Nonnull (^)(NSString * _Nonnull))APIName{
-   return ^YXYRequest *(NSString *apiName){
++ (YXYRequest *)initWithAPIName:(NSString *)apiName params:(NSDictionary *)params modelName:(NSString *)modelName succ:(YXYRequestSuccessBlock)succ fail:(YXYRequestFailureBlock)fail{
+    return [[YXYRequest alloc] initWithAPIName:apiName params:params modelName:modelName succ:succ fail:fail];
+}
+
+- (YXYRequest *)initWithAPIName:(NSString *)apiName params:(NSDictionary *)params modelName:(NSString *)modelName succ:(YXYRequestSuccessBlock)succ fail:(YXYRequestFailureBlock)fail{
+    if (self = [super init]) {
         self.apiName = apiName;
-        return self;
-    };
-}
-
-- (YXYRequest *(^)(NSDictionary *))Params{
-    return ^YXYRequest *(NSDictionary *params){
         self.params = params;
-        return self;
-    };
-}
-
-- (YXYRequest *(^)(BOOL))cache{
-    return ^YXYRequest *(BOOL cache){
-        self.isCache = cache;
-        return self;
-    };
-}
-
-- (YXYRequest *(^)(YXYHTTPMethod))Method{
-    return ^YXYRequest *(YXYHTTPMethod method){
-        self.method = method;
-        return self;
-    };
-}
-
-- (YXYRequest *(^)(YXYRequestSuccessBlock))succ{
-    return ^YXYRequest *(YXYRequestSuccessBlock succ){
-        self.success = succ;
-        return self;
-    };
-}
-
-- (YXYRequest *(^)(YXYRequestFailureBlock))fail{
-    return ^YXYRequest *(YXYRequestFailureBlock fail){
-        self.failure = fail;
-        return self;
-    };
-}
-
-- (YXYRequest *(^)(BOOL))ShowErrorMsg{
-    return ^YXYRequest *(BOOL show){
-        self.showErrMsg = show;
-        return self;
-    };
-}
-
-- (YXYRequest *(^)(NSString *))modelName{
-    return ^YXYRequest *(NSString *modelName){
         self.modelClass = NSClassFromString(modelName);
-        return self;
-    };
+        self.success = succ;
+        self.failure = fail;
+    }
+    return self;
 }
 
 @end
