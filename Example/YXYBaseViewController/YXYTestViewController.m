@@ -8,6 +8,7 @@
 
 #import "YXYTestViewController.h"
 #import "YXYLabel.h"
+#import "YXYButton.h"
 #import "Masonry.h"
 #import "UIView+Helper.h"
 #import "YXYTestInteractor.h"
@@ -29,7 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-        
+    YXYButton *btn = YXYButton.new;
+    
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -40,8 +42,8 @@
     self.tableView.dataSource = _interactor;
     self.refreshDelegate = _interactor;
     _interactor.vc = self;
-    
-    YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20"] completion:^(NSInteger idx) {
+
+    YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20"] rowHeigh:50 completion:^(NSInteger idx) {
         [YXYAlertView customAlertMessage:@"xsad" confirmTitle:nil confirmColor:nil cancelTitle:nil cancelColor:nil completion:nil];
     }];
     [sheet.btnBottom setTitle:@"取消" forState:UIControlStateNormal];

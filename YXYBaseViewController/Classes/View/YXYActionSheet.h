@@ -27,17 +27,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-+ (instancetype)actionSheetWithDataSource:(NSArray *)dataSource completion:(void(^)(NSInteger idx))completion;
-
 /**
- 自定义Cell的实例化方法
-
  @param dataSource <#dataSource description#>
- @param delegate <#delegate description#>
+ @param heigh cell的高度，默认为46
  @param completion <#completion description#>
  @return <#return value description#>
  */
-+ (instancetype)actionSheetWithDataSource:(NSArray *)dataSource delegate:(id)delegate completion:(void (^)(NSInteger))completion;
++ (instancetype)actionSheetWithDataSource:(NSArray *)dataSource rowHeigh:(CGFloat)heigh completion:(void(^)(NSInteger idx))completion;
+
+
+/**
+ 自定义Cell的实例化方法
+ @param dataSource <#dataSource description#>
+ @param delegate <#delegate description#>
+ @param heigh cell的高度，默认46
+ @param completion <#completion description#>
+ @return <#return value description#>
+ */
++ (instancetype)actionSheetWithDataSource:(NSArray *)dataSource delegate:(id)delegate rowHeigh:(CGFloat)heigh completion:(void (^)(NSInteger))completion;
 
 
 @end

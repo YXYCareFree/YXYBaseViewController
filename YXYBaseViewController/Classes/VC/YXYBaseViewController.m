@@ -187,6 +187,7 @@
 - (UIButton *)btnBack{
     if (!_btnBack) {
         _btnBack = [UIButton new];
+        _btnBack.adjustsImageWhenHighlighted = NO;
         [_btnBack addTarget:self action:@selector(backClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.vNavBar];
     }

@@ -10,6 +10,20 @@
 
 @implementation YXYButton
 
++ (instancetype)new{
+    YXYButton *btn = [super new];
+    btn.adjustsImageWhenHighlighted = NO;
+    return btn;
+}
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        self.adjustsImageWhenHighlighted = NO;
+    }
+    return self;
+}
+
 - (YXYButton *(^)(UIFont *))titleFont{
     return ^YXYButton *(UIFont *font){
         self.titleLabel.font = font;

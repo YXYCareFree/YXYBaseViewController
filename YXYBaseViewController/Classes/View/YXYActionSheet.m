@@ -14,26 +14,28 @@
 @property (nonatomic, copy) void (^ActionSheetBlock)(NSInteger idx);
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) CGFloat rowH;
 
 @end
 
 @implementation YXYActionSheet
 
-+ (instancetype)actionSheetWithDataSource:(NSArray *)dataSource completion:(void (^)(NSInteger))completion{
-    YXYActionSheet *sheet = [[YXYActionSheet alloc] initWithDataSource:dataSource delegate:nil completion:completion];
++ (instancetype)actionSheetWithDataSource:(NSArray *)dataSource rowHeigh:(CGFloat)heigh completion:(void (^)(NSInteger))completion{
+    YXYActionSheet *sheet = [[YXYActionSheet alloc] initWithDataSource:dataSource delegate:nil rowHeigh:heigh completion:completion];
     return sheet;
 }
 
-+ (instancetype)actionSheetWithDataSource:(NSArray *)dataSource delegate:(id)delegate completion:(void (^)(NSInteger))completion{
-    YXYActionSheet *sheet = [[YXYActionSheet alloc] initWithDataSource:dataSource delegate:delegate completion:completion];
++ (instancetype)actionSheetWithDataSource:(NSArray *)dataSource delegate:(id)delegate rowHeigh:(CGFloat)heigh completion:(void (^)(NSInteger))completion{
+    YXYActionSheet *sheet = [[YXYActionSheet alloc] initWithDataSource:dataSource delegate:delegate rowHeigh:heigh completion:completion];
     return sheet;
 }
 
-- (instancetype)initWithDataSource:(NSArray *)dataSource delegate:(id)delegate completion:(void (^)(NSInteger))completion{
+- (instancetype)initWithDataSource:(NSArray *)dataSource delegate:(id)delegate rowHeigh:(CGFloat)heigh completion:(void (^)(NSInteger))completion{
     if (self = [super init]) {
         self.dataSource = dataSource;
         self.ActionSheetBlock = completion;
         self.delegate = delegate;
+        self.rowH = heigh > 0 ? heigh : 46;
         [self setUI];
     }
     return self;
@@ -48,7 +50,7 @@
     tap.delegate = self;
     [self addGestureRecognizer:tap];
     
-    CGFloat esH = self.dataSource.count * 46;
+    CGFloat esH = self.dataSource.count * self.rowH;
     CGFloat maxH = kScreenHeight - NAVIGATION_BAR_HEIGHT - 17 - 44 - HOME_INDICATOR_HEIGHT;
     CGFloat h = esH > maxH ? maxH : esH;
     
@@ -67,8 +69,8 @@
 
 - (void)dismiss{
     [UIView animateWithDuration:.25 animations:^{
-        self.btnBottom.frame = CGRectMake(15, kScreenHeight - (- 44 - 17 - HOME_INDICATOR_HEIGHT - 15 - 46 * self.dataSource.count), kScreenWidth - 30, 44);
-        self.tableView.frame = CGRectMake(15, kScreenHeight, kScreenWidth - 30, self.dataSource.count * 46);
+        self.btnBottom.frame = CGRectMake(15, kScreenHeight - (- 44 - 17 - HOME_INDICATOR_HEIGHT - 15 - self.rowH * self.dataSource.count), kScreenWidth - 30, 44);
+        self.tableView.frame = CGRectMake(15, kScreenHeight, kScreenWidth - 30, self.dataSource.count * self.rowH);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
@@ -105,13 +107,13 @@
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        CGFloat esH = self.dataSource.count * 46;
+        CGFloat esH = self.dataSource.count * self.rowH;
         CGFloat maxH = kScreenHeight - NAVIGATION_BAR_HEIGHT - 17 - 44 - HOME_INDICATOR_HEIGHT;
         CGFloat h = esH > maxH ? maxH : esH;
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(15, kScreenHeight, kScreenWidth - 30, h) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        _tableView.rowHeight = 46;
+        _tableView.rowHeight = self.rowH;
         _tableView.bounces = NO;
         _tableView.separatorColor = ColorFromHex(0xeeeeee);
         _tableView.delegate = self;
@@ -130,7 +132,7 @@
 
 - (UIButton *)btnBottom{
     if (!_btnBottom) {
-        _btnBottom = [[UIButton alloc] initWithFrame:CGRectMake(15, kScreenHeight, kScreenWidth - 30, 44)];
+        _btnBottom = [[UIButton alloc] initWithFrame:CGRectMake(15, kScreenHeight, kScreenWidth - 30, self.rowH)];
         _btnBottom.layer.cornerRadius = 5;
         _btnBottom.backgroundColor = UIColor.whiteColor;
         [_btnBottom setTitleColor:[UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0] forState:UIControlStateNormal];
@@ -160,7 +162,6 @@
         make.center.equalTo(self.contentView);
     }];
 }
-
 
 - (UILabel *)lblTitle{
     if (!_lblTitle) {
