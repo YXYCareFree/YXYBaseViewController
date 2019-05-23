@@ -27,7 +27,7 @@
 }
 
 - (YXYRequest *)initWithAPIName:(NSString *)apiName params:(NSDictionary *)params modelName:(NSString *)modelName succ:(YXYRequestSuccessBlock)succ fail:(YXYRequestFailureBlock)fail{
-    if (self = [super init]) {
+    if ((self = YXYRequest.alloc.init)) {
         self.apiName = apiName;
         self.params = params;
         self.modelClass = NSClassFromString(modelName);

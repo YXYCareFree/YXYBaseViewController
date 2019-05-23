@@ -12,7 +12,7 @@
 #import "Masonry.h"
 #import "UIView+Helper.h"
 #import "YXYTestInteractor.h"
-#import "YXYActionSheet.h"
+//#import "YXYActionSheet.h"
 #import "YXYDefine.h"
 #import "YXYAlertView.h"
 #import "NSString+RegularExpressions.h"
@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -41,12 +42,12 @@
     self.refreshDelegate = _interactor;
     _interactor.vc = self;
 
-    YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20"] rowHeigh:50 completion:^(NSInteger idx) {
-        [YXYAlertView customAlertMessage:@"xsad" confirmTitle:nil confirmColor:nil cancelTitle:nil cancelColor:nil completion:nil];
-    }];
-    [sheet.btnBottom setTitle:@"取消" forState:UIControlStateNormal];
-    [sheet.btnBottom setTitleColor:UIColor.redColor forState:UIControlStateNormal];
-    sheet.color = [UIColor blueColor];
+//    YXYActionSheet *sheet = [YXYActionSheet actionSheetWithDataSource:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20"] rowHeigh:50 completion:^(NSInteger idx) {
+//        [YXYAlertView customAlertMessage:@"xsad" confirmTitle:nil confirmColor:nil cancelTitle:nil cancelColor:nil completion:nil];
+//    }];
+//    [sheet.btnBottom setTitle:@"取消" forState:UIControlStateNormal];
+//    [sheet.btnBottom setTitleColor:UIColor.redColor forState:UIControlStateNormal];
+//    sheet.color = [UIColor blueColor];
     
 //    UILabel *label = [[UILabel alloc] init];
 //    label.text = @"我是YXYLable";
