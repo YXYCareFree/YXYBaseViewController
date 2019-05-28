@@ -23,8 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXYBaseViewController : UIViewController<UINavigationControllerDelegate>
 
-@property (nonatomic, strong) YXYTableView *yxy_tableView;
-
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, weak) id<YXYBaseViewControlerRefreshDelegate> refreshDelegate;

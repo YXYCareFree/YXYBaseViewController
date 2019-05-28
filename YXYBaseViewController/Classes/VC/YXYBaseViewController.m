@@ -28,7 +28,7 @@
 //    self.navigationController.navigationBar.translucent = hidden;
     [self.navigationController setNavigationBarHidden:hidden animated:YES];
 
-    if (_vBack || _lblTitle) {
+    if ((_vBack || _lblTitle) && hidden) {
         [self.view addSubview:self.vNavBar];
     }
 }
@@ -106,14 +106,8 @@
         [self.refreshDelegate YXYVC_PullDownRefreshCompletion:^(BOOL success) {
             if (success) {
                 [self.tableView reloadData];
-                if (_yxy_tableView) {
-                    [self.yxy_tableView reloadData];
-                }
             }
             [self.tableView.mj_header endRefreshing];
-            if (_yxy_tableView) {
-                [self.yxy_tableView.mj_header endRefreshing];
-            }
         }];
     }
 }
@@ -123,14 +117,8 @@
         [self.refreshDelegate YXYVC_PullUpLoadMore:1 completion:^(BOOL success) {
             if (success) {
                 [self.tableView reloadData];
-                if (_yxy_tableView) {
-                    [self.yxy_tableView reloadData];
-                }
             }
             [self.tableView.mj_footer endRefreshing];
-            if (_yxy_tableView) {
-                [self.yxy_tableView.mj_footer endRefreshing];
-            }
         }];
     }
 }
@@ -140,10 +128,6 @@
     _refreshDelegate = refreshDelegate;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh)];
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullUpLoadMore)];
-    if (_yxy_tableView) {
-        self.yxy_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullDownRefresh)];
-        self.yxy_tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullUpLoadMore)];
-    }
 }
 
 - (void)setColorBack:(UIColor *)colorBack{
@@ -158,30 +142,19 @@
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
         [self.view addSubview:_tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
     }
     return _tableView;
-}
-
-- (YXYTableView *)yxy_tableView{
-    if (!_yxy_tableView) {
-        _yxy_tableView = [YXYTableView new];
-        _yxy_tableView.backgroundColor = [UIColor whiteColor];
-        _yxy_tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-        _yxy_tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        if (@available(iOS 11.0, *)) {
-            _yxy_tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-            self.automaticallyAdjustsScrollViewInsets = NO;
-        }
-        [self.view addSubview:_yxy_tableView];
-    }
-    return _yxy_tableView;
 }
 
 - (UIButton *)btnBack{
