@@ -12,9 +12,13 @@
 
 @protocol YXYBaseViewControlerRefreshDelegate <NSObject>
 
+@required
+- (void)loadData:(void(^)(BOOL success, id obj))completion isRefresh:(BOOL)refresh;
+
+@optional
 - (void)YXYVC_PullDownRefreshCompletion:(void(^)(BOOL success))block;
 
-- (void)YXYVC_PullUpLoadMore:(NSInteger)page completion:(void(^)(BOOL success))block;
+- (void)YXYVC_PullUpLoadMoreCompletion:(void(^)(BOOL success))block;
 
 @end
 
@@ -58,10 +62,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-- (void)pullDownRefresh;
-
-- (void)addEndEditingTapGesture;
-
+/**
+ 收起键盘
+ */
 - (void)endEditing;
 
 @end

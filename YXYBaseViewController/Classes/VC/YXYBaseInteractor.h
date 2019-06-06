@@ -36,7 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UITableView *tableView;
 
 
-- (void)loadData:(void(^)(BOOL success, id obj))completion isRefresh:(BOOL)refresh;
 
 @end
 

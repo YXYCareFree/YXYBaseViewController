@@ -113,8 +113,8 @@
 }
 
 - (void)pullUpLoadMore{
-    if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(YXYVC_PullUpLoadMore:completion:)]) {
-        [self.refreshDelegate YXYVC_PullUpLoadMore:1 completion:^(BOOL success) {
+    if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(YXYVC_PullUpLoadMoreCompletion:)]) {
+        [self.refreshDelegate YXYVC_PullUpLoadMoreCompletion:^(BOOL success) {
             if (success) {
                 [self.tableView reloadData];
             }

@@ -35,7 +35,8 @@
     }
     [self loadData:^(BOOL success, id  _Nonnull obj) {
         if (success) {
-            self.dataSource = [NSMutableArray arrayWithArray:obj];
+            [self.dataSource removeAllObjects];
+            [self.dataSource addObjectsFromArray:obj];
         }else{
             self.pageNum = temp;
         }
@@ -45,7 +46,7 @@
     } isRefresh:YES];
 }
 
-- (void)YXYVC_PullUpLoadMore:(NSInteger)page completion:(void (^)(BOOL))block{
+- (void)YXYVC_PullUpLoadMoreCompletion:(void (^)(BOOL))block{
     self.pageNum = [NSString stringWithFormat:@"%ld", ++self.pn];
     [self loadData:^(BOOL success, id  _Nonnull obj) {
         if (success) {
