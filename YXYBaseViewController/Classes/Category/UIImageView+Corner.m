@@ -8,7 +8,7 @@
 #import "UIImageView+Corner.h"
 #import <objc/runtime.h>
 #import "UIImage+Corner.h"
-#import "UIImageView+WebCache.h"
+#import "SDWebImageDownloader.h"
 
 @implementation UIImageView (Corner)
 

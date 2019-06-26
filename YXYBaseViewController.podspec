@@ -54,6 +54,7 @@ Pod::Spec.new do |s|
    s.subspec 'View' do |view|
         view.source_files = 'YXYBaseViewController/Classes/View/**/*'
         view.dependency 'YXYBaseViewController/Category'
+        view.dependency 'YXYBaseViewController/YXYKit'
     end
 
     s.subspec 'YXYKit' do |yykit|
