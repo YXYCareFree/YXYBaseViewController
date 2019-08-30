@@ -36,7 +36,7 @@
     self.panGesture = pan;
     [self.view addGestureRecognizer:pan];
     pan.delegate = self;
-    NSLog(@"pan==%p", pan);
+//    NSLog(@"pan==%p", pan);
     // 禁止之前手势
     self.interactivePopGestureRecognizer.enabled = NO;
 }

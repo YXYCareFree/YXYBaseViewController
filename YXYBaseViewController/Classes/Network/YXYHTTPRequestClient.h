@@ -22,6 +22,6 @@ typedef void(^CompletionBlock)(BOOL success, id result, NSString * errorMsg);
  */
 + (instancetype)shareManagerWithBaseUrl:(NSString *)urlStr cerPath:(NSString *)path AFSSLPinningMode:(AFSSLPinningMode)model;
 
-- (void)startRequest:(YXYRequest *)request success:(void(^)(id responseObj, id cacheObj))success failure:(void(^)(NSError *error))failure;
+- (void)startRequest:(YXYRequest *)request success:(void(^)(id responseObj))success failure:(void(^)(NSError *error))failure;
 
 @end

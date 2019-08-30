@@ -47,11 +47,10 @@
     return shareManager;
 }
 
-- (void)startRequest:(YXYRequest *)request success:(void(^)(id responseObj, id cacheObj))success failure:(void(^)(NSError *error))failure{
-    
+- (void)startRequest:(YXYRequest *)request success:(void(^)(id responseObj))success failure:(void(^)(NSError *error))failure{
     if (request.isCache && [self.cache objectForKey:[request.apiName stringFromMD5]]) {//缓存操作
         if (success) {
-            success(nil, [self.cache objectForKey:[request.apiName stringFromMD5]]);
+            success([self.cache objectForKey:[request.apiName stringFromMD5]]);
         }
     }
     
@@ -78,20 +77,20 @@
     }];
     
     if (request.method == YXYHTTPMethodGET) {
-      
+        
         task = [self GET:request.apiName parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-         
+            
             [weakSelf handleSuccess:success responseObj:responseObject request:request_block task:task];
-
+            
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-          
+            
             [weakSelf handleFailure:failure error:error request:request_block task:task];
-
+            
         }];
     }else if (request.method == YXYHTTPMethodPOST){
-      
+        
         task = [self POST:request.apiName parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-          
+            
             [weakSelf handleSuccess:success responseObj:responseObject request:request_block task:task];
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -99,16 +98,16 @@
             [weakSelf handleFailure:failure error:error request:request_block task:task];
         }];
     }
-
+    
     if (task) {
         [self.taskArr addObject:task];
     }
 }
 
-- (void)handleSuccess:(void(^)(id responseObj, id cacheObj))success responseObj:(id)responseObject request:(YXYRequest *)request task:(NSURLSessionDataTask *)task{
+- (void)handleSuccess:(void(^)(id responseObj))success responseObj:(id)responseObject request:(YXYRequest *)request task:(NSURLSessionDataTask *)task{
    
     if (success) {
-        success(responseObject, nil);
+        success(responseObject);
     }
     
     if (request.isCache) {
