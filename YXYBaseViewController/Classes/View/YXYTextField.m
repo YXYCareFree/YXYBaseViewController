@@ -27,6 +27,11 @@
     return self;
 }
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self addNotifi];
+}
+
 - (instancetype)init{
     if (self = [super init]) {
         [self addNotifi];

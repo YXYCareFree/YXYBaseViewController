@@ -113,19 +113,6 @@
     if (request.isCache) {
         [self.cache setObject:responseObject forKey:[request.apiName stringFromMD5]];
     }
-    
-    NSMutableArray * running = self.runningRequest[request.apiName];
-    if ([running containsObject:request.params]) {
-        [running removeObject:request.params];
-        if (running.count == 0) {
-            NSLog(@"移除apiArr, %@", request.apiName);
-            [self.runningRequest removeObjectForKey:request.apiName];
-        }
-    }
-    
-    if ([self.taskArr containsObject:task]) {
-        [self.taskArr removeObject:task];
-    }
 }
 
 - (void)handleFailure:(void(^)(NSError *error))failure error:(NSError *)error request:(YXYRequest *)request task:(NSURLSessionDataTask *)task{
