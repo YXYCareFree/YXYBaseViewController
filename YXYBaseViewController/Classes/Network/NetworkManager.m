@@ -11,7 +11,7 @@
 
 @implementation NetworkManager
 
-+ (void)getCurrentNetwork:(void(^)(NSString *status))completion{
++ (void)getCurrentNetworkType:(void(^)(NSString *status))completion{
 
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
@@ -24,7 +24,7 @@
                 
             default:
                 if (completion) {
-                    completion([NetworkManager getCurrentNetwork]);
+                    completion([NetworkManager getCurrentNetworkType]);
                 }
                 break;
         }
@@ -32,7 +32,7 @@
     [manager startMonitoring];
 }
 
-+ (NSString *)getCurrentNetwork{
++ (NSString *)getCurrentNetworkType{
     NSString *stateString = @"";
     
     // 状态栏是由当前app控制的，首先获取当前app
@@ -68,34 +68,35 @@
         }
         
         switch (type) {
-            case 0:
-                stateString = @"NoNetwork";
-                break;
-                
-            case 1:
-                stateString = @"2G";
-                break;
-                
-            case 2:
-                stateString = @"3G";
-                break;
-                
-            case 3:
-                stateString = @"4G";
-                break;
-                
-            case 4:
-                stateString = @"LTE";
-                break;
-                
-            case 5:
-                stateString = @"wifi";
-                break;
-                
-            default:
-                break;
+            case 0: stateString = @"NoNetwork"; break;
+            case 1: stateString = @"2G"; break;
+            case 2: stateString = @"3G"; break;
+            case 3: stateString = @"4G"; break;
+            case 4: stateString = @"LTE"; break;
+            case 5: stateString = @"wifi"; break;
+            default: break;
         }
     }
     return stateString;
+}
+
++ (void)getCellularDataRestrictedState:(void(^)(CTCellularDataRestrictedState state))completion{
+    CTCellularData *cellularData = [[CTCellularData alloc] init];
+    // 状态发生变化时调用
+    cellularData.cellularDataRestrictionDidUpdateNotifier = ^(CTCellularDataRestrictedState restrictedState) {
+        completion(restrictedState);
+        switch (restrictedState) {
+           case kCTCellularDataRestrictedStateUnknown:
+               NSLog(@"蜂窝移动网络状态：未知");
+               break;
+           case kCTCellularDataRestricted:
+               NSLog(@"蜂窝移动网络状态：关闭");
+               break;
+           case kCTCellularDataNotRestricted:
+               NSLog(@"蜂窝移动网络状态：开启");
+               break;
+           default: break;
+        }
+    };
 }
 @end
