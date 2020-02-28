@@ -11,27 +11,6 @@
 
 @implementation NetworkManager
 
-+ (void)getCurrentNetworkType:(void(^)(NSString *status))completion{
-
-    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusNotReachable:
-                if (completion) {
-                    completion(@"NoNetwork");
-                }
-                break;
-                
-            default:
-                if (completion) {
-                    completion([NetworkManager getCurrentNetworkType]);
-                }
-                break;
-        }
-    }];
-    [manager startMonitoring];
-}
-
 + (NSString *)getCurrentNetworkType{
     NSString *stateString = @"";
     
@@ -78,6 +57,17 @@
         }
     }
     return stateString;
+}
+
++ (void)networkIsAvailable:(void (^)(BOOL))completion{
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusNotReachable: completion(NO); break;
+            default: completion(YES); break;
+        }
+    }];
+    [manager startMonitoring];
 }
 
 + (void)getCellularDataRestrictedState:(void(^)(CTCellularDataRestrictedState state))completion{
