@@ -29,15 +29,17 @@
         }
     }
     id nextResponder = nil;
-    UIViewController * appRootVC = window.rootViewController;
+    UIViewController *appRootVC = window.rootViewController;
+    nextResponder = appRootVC;
     //如果是present上来的vc，则appRootVC.presentedViewController不为nil
     if (appRootVC.presentedViewController) {
         nextResponder = appRootVC.presentedViewController;
-    }else{
-        
-        UIView * frontView = [[window subviews] objectAtIndex:0];
-        nextResponder = [frontView nextResponder];
     }
+//    else{
+//
+//        UIView * frontView = [[window subviews] objectAtIndex:0];
+//        nextResponder = [frontView nextResponder];
+//    }
     
     if ([nextResponder isKindOfClass:[UITabBarController class]]) {
         
@@ -70,7 +72,7 @@
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
     [invocation setSelector:selector];
     [invocation setTarget:[UIDevice currentDevice]];
-    int val = orientation;
+    NSInteger val = orientation;
     [invocation setArgument:&val atIndex:2];//前两个参数已被target和selector占用
     [invocation invoke];
 }
