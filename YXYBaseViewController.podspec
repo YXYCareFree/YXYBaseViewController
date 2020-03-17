@@ -32,15 +32,15 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '8.0'
     
-#    s.source_files = 'YXYBaseViewController/Classes/**/*'
+    s.source_files = 'YXYBaseViewController/Classes/**/*'
+    
 #    s.resource_bundles = {
 #      'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
 #    }
 
-    s.subspec 'Category' do |category|
-        category.source_files = 'YXYBaseViewController/Classes/Category/**/*'
-        category.frameworks = 'UIKit', 'Accelerate', 'ImageIO'
-    end
+#    s.subspec 'Category' do |category|
+#        category.source_files = 'YXYBaseViewController/Classes/Category/**/*'
+#    end
 #
 #    s.subspec 'Network' do |network|
 #        network.source_files = 'YXYBaseViewController/Classes/Network/**/*'
