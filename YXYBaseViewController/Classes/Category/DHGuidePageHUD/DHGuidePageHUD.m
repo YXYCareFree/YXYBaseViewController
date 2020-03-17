@@ -8,9 +8,7 @@
 
 #import "DHGuidePageHUD.h"
 #import "DHGifImageOperation.h"
-#import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <AVKit/AVKit.h>
 #import "Masonry.h"
 
 #define DDHidden_TIME   1.0

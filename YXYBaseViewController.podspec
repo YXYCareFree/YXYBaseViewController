@@ -33,43 +33,46 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '8.0'
     
 #    s.source_files = 'YXYBaseViewController/Classes/**/*'
+#    s.resource_bundles = {
+#      'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
+#    }
 
     s.subspec 'Category' do |category|
         category.source_files = 'YXYBaseViewController/Classes/Category/**/*'
+        category.frameworks = 'UIKit', 'Accelerate', 'ImageIO'
     end
-
-    s.subspec 'Network' do |network|
-        network.source_files = 'YXYBaseViewController/Classes/Network/**/*'
-        network.dependency 'YXYBaseViewController/Category'
-        network.dependency 'YYCache'
-    end
-
-    s.subspec 'VC' do |vc|
-        vc.source_files = 'YXYBaseViewController/Classes/VC/**/*'
-        vc.dependency 'YXYBaseViewController/Category'
-        vc.dependency 'YXYBaseViewController/YXYKit'
-        vc.dependency 'YXYBaseViewController/View'
-    end
-
-   s.subspec 'View' do |view|
-        view.source_files = 'YXYBaseViewController/Classes/View/**/*'
-        view.dependency 'YXYBaseViewController/Category'
-        view.dependency 'YXYBaseViewController/YXYKit'
-    end
-
-    s.subspec 'YXYKit' do |yykit|
-        yykit.source_files = 'YXYBaseViewController/Classes/YXYKit/**/*'
-    end
-    
-    s.subspec 'YXYMediator' do |mediator|
-        mediator.source_files = 'YXYBaseViewController/Classes/YXYMediator/**/*'
-    end
-     s.resource_bundles = {
-       'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
-     }
+#
+#    s.subspec 'Network' do |network|
+#        network.source_files = 'YXYBaseViewController/Classes/Network/**/*'
+#        network.dependency 'YXYBaseViewController/Category'
+#        network.dependency 'YYCache'
+#    end
+#
+#    s.subspec 'VC' do |vc|
+#        vc.source_files = 'YXYBaseViewController/Classes/VC/**/*'
+#        vc.dependency 'YXYBaseViewController/Category'
+#        vc.dependency 'YXYBaseViewController/YXYKit'
+#        vc.dependency 'YXYBaseViewController/View'
+#    end
+#
+#   s.subspec 'View' do |view|
+#        view.source_files = 'YXYBaseViewController/Classes/View/**/*'
+#        view.dependency 'YXYBaseViewController/Category'
+#        view.dependency 'YXYBaseViewController/YXYKit'
+#    end
+#
+#    s.subspec 'YXYKit' do |yykit|
+#        yykit.source_files = 'YXYBaseViewController/Classes/YXYKit/**/*'
+#    end
+#
+#    s.subspec 'YXYMediator' do |mediator|
+#        mediator.source_files = 'YXYBaseViewController/Classes/YXYMediator/**/*'
+#    end
+     
 
     # s.public_header_files = 'Pod/Classes/**/*.h'
     # s.frameworks = 'UIKit', 'MapKit'
+#    s.frameworks = 'UIKit', 'Accelerate', 'ImageIO'
     s.dependency 'AFNetworking'
     s.dependency 'MJRefresh'
     s.dependency 'Masonry'
