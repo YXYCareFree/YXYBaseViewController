@@ -64,9 +64,9 @@ Pod::Spec.new do |s|
     s.subspec 'YXYMediator' do |mediator|
         mediator.source_files = 'YXYBaseViewController/Classes/YXYMediator/**/*'
     end
-#     s.resource_bundles = {
-#       'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
-#     }
+     s.resource_bundles = {
+       'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
+     }
 
     # s.public_header_files = 'Pod/Classes/**/*.h'
     # s.frameworks = 'UIKit', 'MapKit'
