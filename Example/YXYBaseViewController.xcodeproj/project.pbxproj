@@ -10,7 +10,6 @@
 		0E57DEC956CF15088C6407FA /* Pods_YXYBaseViewController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADEB3E491A0191178EAD5E7 /* Pods_YXYBaseViewController_Example.framework */; };
 		184872112176CEEE00386B7D /* YXYTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184872102176CEEE00386B7D /* YXYTestViewController.m */; };
 		18E1F6B12189ACB800AC99E8 /* YXYTestInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E1F6B02189ACB800AC99E8 /* YXYTestInteractor.m */; };
-		5C24D539D5F5444B0E6BB9B4 /* Pods_YXYBaseViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0FF056C430846DC8A2CE5A /* Pods_YXYBaseViewController_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -46,7 +45,6 @@
 		1EECB1F37CBC4E5684C7A45F /* Pods-YXYBaseViewController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXYBaseViewController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		1F67E12488BD56AC59EFAE03 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3E9FBC55F571C363D075ABB5 /* YXYBaseViewController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = YXYBaseViewController.podspec; path = ../YXYBaseViewController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		5A0FF056C430846DC8A2CE5A /* Pods_YXYBaseViewController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YXYBaseViewController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* YXYBaseViewController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXYBaseViewController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,10 +64,8 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7ADEB3E491A0191178EAD5E7 /* Pods_YXYBaseViewController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YXYBaseViewController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EBC8257F6E0440514A43B31 /* Pods-YXYBaseViewController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXYBaseViewController_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YXYBaseViewController_Tests/Pods-YXYBaseViewController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B2FF06D816FDF3854E528B12 /* Pods-YXYBaseViewController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXYBaseViewController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D8374B2AE35DA9269DC685CD /* Pods-YXYBaseViewController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXYBaseViewController_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YXYBaseViewController_Tests/Pods-YXYBaseViewController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +87,6 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				5C24D539D5F5444B0E6BB9B4 /* Pods_YXYBaseViewController_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +122,6 @@
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				7ADEB3E491A0191178EAD5E7 /* Pods_YXYBaseViewController_Example.framework */,
-				5A0FF056C430846DC8A2CE5A /* Pods_YXYBaseViewController_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -195,8 +189,6 @@
 			children = (
 				1EECB1F37CBC4E5684C7A45F /* Pods-YXYBaseViewController_Example.debug.xcconfig */,
 				B2FF06D816FDF3854E528B12 /* Pods-YXYBaseViewController_Example.release.xcconfig */,
-				D8374B2AE35DA9269DC685CD /* Pods-YXYBaseViewController_Tests.debug.xcconfig */,
-				7EBC8257F6E0440514A43B31 /* Pods-YXYBaseViewController_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -227,11 +219,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "YXYBaseViewController_Tests" */;
 			buildPhases = (
-				08ED15CBDFFD77986AECD615 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				931CCCBEE3FFD17E4F6CEB88 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -301,31 +291,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08ED15CBDFFD77986AECD615 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YXYBaseViewController_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0C05E97DED6F72CB55F38FA3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -346,31 +318,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		931CCCBEE3FFD17E4F6CEB88 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-YXYBaseViewController_Tests/Pods-YXYBaseViewController_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
-				"${BUILT_PRODUCTS_DIR}/Expecta+Snapshots/Expecta_Snapshots.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
-				"${BUILT_PRODUCTS_DIR}/Specta/Specta.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta_Snapshots.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Specta.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YXYBaseViewController_Tests/Pods-YXYBaseViewController_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A34402A3E403B12B26ACD983 /* [CP] Check Pods Manifest.lock */ = {
@@ -532,7 +480,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YXYBaseViewController/YXYBaseViewController-Prefix.pch";
 				INFOPLIST_FILE = "YXYBaseViewController/YXYBaseViewController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -548,7 +496,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YXYBaseViewController/YXYBaseViewController-Prefix.pch";
 				INFOPLIST_FILE = "YXYBaseViewController/YXYBaseViewController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -558,7 +506,6 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8374B2AE35DA9269DC685CD /* Pods-YXYBaseViewController_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -582,7 +529,6 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7EBC8257F6E0440514A43B31 /* Pods-YXYBaseViewController_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
