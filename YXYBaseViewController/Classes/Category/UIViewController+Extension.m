@@ -35,11 +35,6 @@
     if (appRootVC.presentedViewController) {
         nextResponder = appRootVC.presentedViewController;
     }
-//    else{
-//
-//        UIView * frontView = [[window subviews] objectAtIndex:0];
-//        nextResponder = [frontView nextResponder];
-//    }
     
     if ([nextResponder isKindOfClass:[UITabBarController class]]) {
         

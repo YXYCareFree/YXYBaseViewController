@@ -243,6 +243,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = YXYCareFree;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = X8C5ZZFNX6;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -477,6 +480,7 @@
 			baseConfigurationReference = 1EECB1F37CBC4E5684C7A45F /* Pods-YXYBaseViewController_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = X8C5ZZFNX6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YXYBaseViewController/YXYBaseViewController-Prefix.pch";
 				INFOPLIST_FILE = "YXYBaseViewController/YXYBaseViewController-Info.plist";
@@ -493,6 +497,7 @@
 			baseConfigurationReference = B2FF06D816FDF3854E528B12 /* Pods-YXYBaseViewController_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = X8C5ZZFNX6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YXYBaseViewController/YXYBaseViewController-Prefix.pch";
 				INFOPLIST_FILE = "YXYBaseViewController/YXYBaseViewController-Info.plist";
