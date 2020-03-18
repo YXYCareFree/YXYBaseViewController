@@ -2,7 +2,6 @@ use_frameworks!
 
 target 'YXYBaseViewController_Example' do
   pod 'YXYBaseViewController', :path => '../'
-#  pod 'Masonry'
 
   target 'YXYBaseViewController_Tests' do
     inherit! :search_paths
