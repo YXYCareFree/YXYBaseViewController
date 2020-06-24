@@ -10,7 +10,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YXYBaseViewController'
-    s.version          = '0.0.9'
+    s.version          = '0.1.0'
     s.summary          = 'VC基类和常用的category'
     
     # This description is used to generate tags and improve search results.
@@ -32,7 +32,12 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '8.0'
     
+    s.resource = 'YXYBaseViewController/Classes/**/*.xib'
     s.source_files = 'YXYBaseViewController/Classes/**/*'
+    #bundle存放.string、.plist、.png等资源
+#    s.resource_bundles = {
+#         'YXYBaseViewController' => ['YXYBaseViewController/Classes/Resources/*']
+#    }
     
 #    s.resource_bundles = {
 #      'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']

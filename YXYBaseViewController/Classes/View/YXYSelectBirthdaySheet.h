@@ -14,6 +14,11 @@ typedef void(^BirthdayBlock)(NSString * birthday);
 
 @property (nonatomic, copy) BirthdayBlock block;
 
-+ (instancetype)initWithSelectedBirthdayConfirmColor:(UIColor *)confirmColor cancelColor:(UIColor *)cancelColor completion:(BirthdayBlock)completion;
+/// 初始化时间
+@property (nonatomic, strong) NSString *defaultDate;
+
+
++ (instancetype)initWithSelectedBirthdayWithYears:(NSArray *)years confirmColor:(UIColor *)confirmColor cancelColor:(UIColor *)cancelColor completion:(BirthdayBlock)completion;
+
 
 @end

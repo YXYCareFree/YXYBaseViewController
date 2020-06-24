@@ -41,4 +41,8 @@
     hud.removeFromSuperViewOnHide = YES;
     return hud;
 }
+
++ (void)hideHUD{
+    [MBProgressHUD hideHUDForView:KEY_WINDOW animated:YES];
+}
 @end

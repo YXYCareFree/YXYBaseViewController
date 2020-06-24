@@ -12,9 +12,8 @@
 @interface YXYPickView ()
 
 @property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) NSString *selectedStr;
-@property (nonatomic, strong) NSArray *dataSource;
-@property (nonatomic, assign) NSInteger selectedRow;
+@property (nonatomic, strong) NSMutableArray *selectedArr;
+@property (nonatomic, strong) NSArray<NSArray *> *dataSource;
 @property (nonatomic, strong) UIColor *colorCancel;
 @property (nonatomic, strong) UIColor *colorConfirm;
 @property (nonatomic, strong) NSString *title;
@@ -48,8 +47,12 @@
     [[UIApplication sharedApplication].delegate.window endEditing:YES];
     self.frame = [UIScreen mainScreen].bounds;
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-
-    _selectedStr = _dataSource[0];
+    
+    self.selectedArr = NSMutableArray.new;
+    for (int i = 0; i < self.dataSource.count; i++) {
+        NSArray *arr = self.dataSource[i];
+        [self.selectedArr addObject:arr[0]];
+    }
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     [self addGestureRecognizer:tap];
@@ -99,20 +102,19 @@
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
+    return self.dataSource.count;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return _dataSource.count;
+    return _dataSource[component].count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return _dataSource[row];
+    return _dataSource[component][row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    _selectedStr = _dataSource[row];
-    _selectedRow = row;
+    [self.selectedArr replaceObjectAtIndex:component withObject:self.dataSource[component][row]];
 }
 
 - (void)cancel{
@@ -120,8 +122,8 @@
 }
 
 - (void)confirm{
-    if (self.block && _selectedStr) {
-        self.block(_selectedStr, _selectedRow);
+    if (self.block) {
+        self.block(self.selectedArr);
     }
     [self dismiss];
 }

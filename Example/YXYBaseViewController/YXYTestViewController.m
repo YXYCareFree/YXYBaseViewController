@@ -18,6 +18,10 @@
 #import "NSString+RegularExpressions.h"
 #import "YXYRequest.h"
 #import "YXYPickView.h"
+#import "YXYSelectBirthdaySheet.h"
+
+#import "YXYPopView.h"
+#import "YXYTableViewCell.h"
 
 @interface YXYTestViewController ()
 
@@ -30,7 +34,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIView *v = UIView.new;
+    v.backgroundColor = UIColor.grayColor;
+    [self.view addSubview:v];
+    [v mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(@0);
+        make.top.equalTo(@20);
+        make.width.height.equalTo(@30);
+    }];
 
+//    [YXYPopView popWithDataSource:@[@"123", @"dasd"] imageDataSource:nil baseView:v completion:^(NSInteger idx) {
+//
+//    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        YXYPopView *pop = [YXYPopView popWithBaseView:v constraint:100 delegate:nil rowH:49 tableViewWidth:200 dataSource:@[@"test去", @"jhjshj"]];
+        pop.YXYPopViewSelectBlock = ^(NSInteger idx) {
+            NSLog(@"%ld", idx);
+        };
+//        [pop registReuseCellNib:[UINib nibWithNibName:@"YXYTableViewCell" bundle:nil] reuseId:@"YXYTableViewCellID"];
+    });
+    
+    return;
+
+//    [YXYSelectBirthdaySheet initWithSelectedBirthdayWithYears:@[@"1993", @"1994"] confirmColor:UIColor.redColor cancelColor:UIColor.grayColor completion:^(NSString *birthday) {
+//        [YXYPickView initWithDataSource:@[@[@"1", @"2"], @[@"3", @"4"]] title:birthday confirmBtnColor:UIColor.redColor cancelBtnColor:UIColor.grayColor completion:^(NSArray *arr) {
+//            NSLog(@"%@", arr);
+//        }];
+//    }];
+    
     [[NSUserDefaults standardUserDefaults] setObject:@[@"qwe"] forKey:@"YXYHideNavBarVC"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -89,6 +120,17 @@
 - (void)test:(NSNumber *)str{
     NSLog(@"%@", str);
 }
+
+#pragma mark--YXYPopViewDelagate
+- (void)yxyPopView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"yxyPopView:didSelectRowAtIndexPath:");
+}
+
+//- (UITableViewCell *)yxyPopView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    YXYTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXYTableViewCellID" forIndexPath:indexPath];
+//    cell.lblTitle.text = @"124";
+//    return cell;
+//}
 
 
 @end

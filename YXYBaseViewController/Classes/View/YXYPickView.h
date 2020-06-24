@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^SelectBlock)(NSString * str, NSInteger idx);
+typedef void(^SelectBlock)(NSArray *arr);
 
 /**
  单列的PickView
@@ -17,9 +17,9 @@ typedef void(^SelectBlock)(NSString * str, NSInteger idx);
 
 @property (nonatomic, copy) SelectBlock block;
 
-+ (instancetype)initWithDataSource:(NSArray *)dataSource confirmBtnColor:(UIColor *)confirmColor cancelBtnColor:(UIColor *)cancelColor completion:(SelectBlock)completion;
++ (instancetype)initWithDataSource:(NSArray<NSArray *> *)dataSource confirmBtnColor:(UIColor *)confirmColor cancelBtnColor:(UIColor *)cancelColor completion:(SelectBlock)completion;
 
-+ (instancetype)initWithDataSource:(NSArray *)dataSource title:(NSString *)title confirmBtnColor:(UIColor *)confirmColor cancelBtnColor:(UIColor *)cancelColor completion:(SelectBlock)completion;
++ (instancetype)initWithDataSource:(NSArray<NSArray *> *)dataSource title:(NSString *)title confirmBtnColor:(UIColor *)confirmColor cancelBtnColor:(UIColor *)cancelColor completion:(SelectBlock)completion;
 
 @end
 

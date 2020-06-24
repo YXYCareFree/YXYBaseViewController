@@ -13,7 +13,8 @@
 #define kScreenHeight      [UIScreen mainScreen].bounds.size.height
 
 @implementation YXYSelectBirthdaySheet{
-    NSMutableArray *_yearsArr;
+    NSArray *_yearsArr;
+    UIPickerView *_pickerView;
     NSMutableArray *_monthsArr;
     NSMutableArray *_daysArr;
     UIView *_contentView;
@@ -25,16 +26,17 @@
     UIColor *_colorCancel;
 }
 
-+ (instancetype)initWithSelectedBirthdayConfirmColor:(UIColor *)confirmColor cancelColor:(UIColor *)cancelColor completion:(BirthdayBlock)completion{
-    YXYSelectBirthdaySheet *view = [[YXYSelectBirthdaySheet alloc] initWithFrame:[UIScreen mainScreen].bounds confirmColor:confirmColor cancelColor:cancelColor completion:completion];
++ (instancetype)initWithSelectedBirthdayWithYears:(NSArray *)years confirmColor:(UIColor *)confirmColor cancelColor:(UIColor *)cancelColor completion:(BirthdayBlock)completion{
+    YXYSelectBirthdaySheet *view = [[YXYSelectBirthdaySheet alloc] initWithFrame:[UIScreen mainScreen].bounds years:years confirmColor:confirmColor cancelColor:cancelColor completion:completion];
     return view;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame confirmColor:(UIColor *)confirmColor cancelColor:(UIColor *)cancelColor completion:(BirthdayBlock)completion{
+- (instancetype)initWithFrame:(CGRect)frame years:(NSArray *)years confirmColor:(UIColor *)confirmColor cancelColor:(UIColor *)cancelColor completion:(BirthdayBlock)completion{
     if (self = [super initWithFrame:frame]) {
         self.block = completion;
         _colorConfirm = confirmColor;
         _colorCancel = cancelColor;
+        _yearsArr = years;
         [self setDataSource];
         [self setupView];
     }
@@ -43,13 +45,9 @@
 
 - (void)setDataSource{
    
-    _yearsArr = [NSMutableArray new];
     _monthsArr = [NSMutableArray new];
     _daysArr = [NSMutableArray new];
     
-    for (int i = 1950; i < 2018; i++) {
-        [_yearsArr addObject:[NSString stringWithFormat:@"%d", i]];
-    }
     for (int i = 1; i < 13; i++) {
         [_monthsArr addObject:[NSString stringWithFormat:@"%d", i]];
     }
@@ -60,7 +58,6 @@
     _year = _yearsArr[0];
     _month = _monthsArr[0];
     _day = _daysArr[0];
-    _birthday = [NSString stringWithFormat:@"%@-%@-%@", _year, [self handle:_month], [self handle:_day]];
 }
 
 - (void)setupView{
@@ -77,6 +74,7 @@
     UIPickerView * pickView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, 160)];
     pickView.delegate = self;
     pickView.dataSource = self;
+    _pickerView = pickView;
     [contentView addSubview:pickView];
     
     UIButton * cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 0, 50, 40)];
@@ -129,7 +127,6 @@
             case 9:
             case 11:         if ([_day intValue] > 30) {
                 _day = @"30";
-                _birthday = [NSString stringWithFormat:@"%@-%@-%@", _year, [self handle:_month], [self handle:_day]];
             } return 30; break;
            
             case 2:{
@@ -137,13 +134,11 @@
                 if ((year % 4 == 0 && year % 100 != 0)||(year %400 == 0)) {
                     if ([_day intValue] > 29) {
                         _day = @"29";
-                        _birthday = [NSString stringWithFormat:@"%@-%@-%@", _year, [self handle:_month], [self handle:_day]];
                     }
                     return 29; break;
                 }else{
                     if ([_day intValue] > 28) {
                         _day = @"28";
-                        _birthday = [NSString stringWithFormat:@"%@-%@-%@", _year, [self handle:_month], [self handle:_day]];
                     }
                     return 28; break;
                 }
@@ -189,7 +184,6 @@
             break;
     }
 
-    _birthday = [NSString stringWithFormat:@"%@-%@-%@", _year, [self handle:_month], [self handle:_day]];
     [pickerView reloadAllComponents];
 }
 
@@ -205,6 +199,7 @@
 }
 
 - (void)confirm{
+    _birthday = [NSString stringWithFormat:@"%@-%@-%@", _year, [self handle:_month], [self handle:_day]];
     if (self.block && _birthday) {
         self.block(_birthday);
     }
@@ -213,10 +208,30 @@
 
 - (void)dismiss{
     [UIView animateWithDuration:.3 animations:^{
-        _contentView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, 200);
+        self->_contentView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, 200);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
 }
 
+- (void)setDefaultDate:(NSString *)defaultDate{
+    _defaultDate = defaultDate;
+    NSString *y = [defaultDate substringToIndex:4];
+    _year = y;
+    [_pickerView selectRow:[_yearsArr indexOfObject:y] inComponent:0 animated:NO];
+    
+    NSString *m = [defaultDate substringWithRange:NSMakeRange(4, 2)];
+    if (m.intValue < 10) {
+        m = [m substringFromIndex:1];
+    }
+    _month = m;
+    [_pickerView selectRow:[_monthsArr indexOfObject:m] inComponent:1 animated:NO];
+
+    NSString *d = [defaultDate substringWithRange:NSMakeRange(6, 2)];
+    if (d.intValue < 10) {
+        d = [d substringFromIndex:1];
+    }
+    _day = d;
+    [_pickerView selectRow:[_daysArr indexOfObject:d] inComponent:2 animated:NO];
+}
 @end

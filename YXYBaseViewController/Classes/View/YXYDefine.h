@@ -9,7 +9,7 @@
 #define YXYDefine_h
 
 #import "Masonry.h"
-
+#import "NSBundle+Resource.h"
 
 #define kScreenWidth       [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight      [UIScreen mainScreen].bounds.size.height
