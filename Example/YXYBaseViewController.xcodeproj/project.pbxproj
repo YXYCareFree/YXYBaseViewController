@@ -311,12 +311,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-YXYBaseViewController_Example/Pods-YXYBaseViewController_Example-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/../../YXYBaseViewController/Classes/Resources/YXYPopCell.xib",
+				"${PODS_CONFIGURATION_BUILD_DIR}/YXYBaseViewController/YXYBaseViewController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YXYPopCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YXYBaseViewController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

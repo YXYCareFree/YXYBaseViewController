@@ -6,7 +6,9 @@
 //
 
 #import "YXYUpdateVersionManager.h"
-#import <AFNetworking.h>
+//#import <AFNetworking.h>
+#import "AFNetworking.h"
+
 #import "YXYAlertView.h"
 #import "YXYDefine.h"
 
@@ -21,10 +23,7 @@
     manager.requestSerializer =[AFHTTPRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",@"text/javascript",nil];
     NSString *appstoreAddress = [@"https://itunes.apple.com/cn/lookup?id=" stringByAppendingString:appId];
-    [manager POST:appstoreAddress parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+    [manager POST:appstoreAddress parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *array = responseObject[@"results"];
         NSDictionary *dic = array[0];
         NSString *appStoreVersion = dic[@"version"];
@@ -43,7 +42,6 @@
                 return ;
             }
         }
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];

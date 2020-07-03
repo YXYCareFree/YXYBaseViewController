@@ -52,7 +52,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"YXYPopCell" bundle:[NSBundle getBundle]] forCellReuseIdentifier:@"YXYPopCellID"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"YXYPopCell" bundle:[NSBundle getBundle]] forCellReuseIdentifier:@"YXYPopCellID"];
+    [self.tableView registerClass:YXYPopCell.class forCellReuseIdentifier:@"YXYPopCellID"];
     [self addSubview:self.tableView];
 
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

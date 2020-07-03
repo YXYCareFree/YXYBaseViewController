@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXYPopCell : YXYBaseTableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (weak, nonatomic) IBOutlet UIView *vSplit;
+@property (nonatomic, strong) UILabel *lblTitle;
+@property (nonatomic, strong)  UIView *vSplit;
 
 @end
 

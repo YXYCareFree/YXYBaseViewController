@@ -10,7 +10,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YXYBaseViewController'
-    s.version          = '0.1.0'
+    s.version          = '0.1.1'
     s.summary          = 'VC基类和常用的category'
     
     # This description is used to generate tags and improve search results.
@@ -30,14 +30,14 @@ Pod::Spec.new do |s|
     s.source           = { :git => 'https://github.com/YXYCareFree/YXYBaseViewController.git', :tag => s.version.to_s }
     # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
     
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
     
     s.resource = 'YXYBaseViewController/Classes/**/*.xib'
     s.source_files = 'YXYBaseViewController/Classes/**/*'
     #bundle存放.string、.plist、.png等资源
-#    s.resource_bundles = {
-#         'YXYBaseViewController' => ['YXYBaseViewController/Classes/Resources/*']
-#    }
+    s.resource_bundles = {
+         'YXYBaseViewController' => ['YXYBaseViewController/Classes/Resources/*']
+    }
     
 #    s.resource_bundles = {
 #      'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']

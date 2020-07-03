@@ -77,25 +77,20 @@
     }];
     
     if (request.method == YXYHTTPMethodGET) {
-        
-        task = [self GET:request.apiName parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
+        task = [self GET:request.apiName parameters:params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [weakSelf handleSuccess:success responseObj:responseObject request:request_block task:task];
-            
+
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
             [weakSelf handleFailure:failure error:error request:request_block task:task];
-            
+
         }];
     }else if (request.method == YXYHTTPMethodPOST){
-        
-        task = [self POST:request.apiName parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
+        task = [self POST:request.apiName parameters:params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [weakSelf handleSuccess:success responseObj:responseObject request:request_block task:task];
-            
+
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
             [weakSelf handleFailure:failure error:error request:request_block task:task];
+
         }];
     }
     
