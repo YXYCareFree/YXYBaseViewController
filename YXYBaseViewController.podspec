@@ -32,12 +32,12 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '9.0'
     
-    s.resource = 'YXYBaseViewController/Classes/**/*.xib'
+#    s.resource = 'YXYBaseViewController/Classes/**/*.xib'
     s.source_files = 'YXYBaseViewController/Classes/**/*'
     #bundle存放.string、.plist、.png等资源
-    s.resource_bundles = {
-         'YXYBaseViewController' => ['YXYBaseViewController/Classes/Resources/*']
-    }
+#    s.resource_bundles = {
+#         'YXYBaseViewController' => ['YXYBaseViewController/Classes/Resources/*']
+#    }
     
 #    s.resource_bundles = {
 #      'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
