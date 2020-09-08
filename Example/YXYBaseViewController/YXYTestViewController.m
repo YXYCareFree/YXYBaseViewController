@@ -23,6 +23,8 @@
 #import "YXYPopView.h"
 #import "YXYTableViewCell.h"
 
+#import "YXYViewController.h"
+
 @interface YXYTestViewController ()
 
 @property (nonatomic, strong) YXYTestInteractor *interactor;
@@ -51,6 +53,8 @@
         pop.YXYPopViewSelectBlock = ^(NSInteger idx) {
             NSLog(@"%ld", idx);
         };
+        
+        [self.navigationController pushViewController:YXYViewController.new animated:YES];
 //        [pop registReuseCellNib:[UINib nibWithNibName:@"YXYTableViewCell" bundle:nil] reuseId:@"YXYTableViewCellID"];
     });
     

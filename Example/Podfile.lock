@@ -20,7 +20,7 @@ PODS:
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
-  - YXYBaseViewController (0.1.0):
+  - YXYBaseViewController (0.1.1):
     - AFNetworking
     - Masonry
     - MBProgressHUD
@@ -51,7 +51,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
-  YXYBaseViewController: 5c12520f483e5152f1b2d52f9b0c52fa6bc1cc91
+  YXYBaseViewController: f78bbaad1887bfc11c8a922e1ff9ae97adda3307
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
 
 PODFILE CHECKSUM: b062c8134ce6ea4d51bb70bc48e7a325ab640686

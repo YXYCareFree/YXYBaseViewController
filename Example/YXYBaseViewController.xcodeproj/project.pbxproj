@@ -24,6 +24,9 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		8349D90A0283BEA4E243502B /* libPods-YXYBaseViewController_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 600A4C61596D3B7E1C73BDFD /* libPods-YXYBaseViewController_Example.a */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		A42ED52624E1835D00C8DE9B /* YXYTimerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A42ED52524E1835D00C8DE9B /* YXYTimerProxy.m */; };
+		A45850F824DC06C500BAB5FE /* YXYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A45850F724DC06C500BAB5FE /* YXYViewController.m */; };
+		A484411124E1A51200AC3811 /* YXYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = A484411024E1A51200AC3811 /* YXYTimer.m */; };
 		A4D0D02C24A221B100CB8E97 /* YXYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D0D02A24A221B100CB8E97 /* YXYTableViewCell.m */; };
 		A4D0D02D24A221B100CB8E97 /* YXYTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D0D02B24A221B100CB8E97 /* YXYTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -67,6 +70,12 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A42ED52424E1835D00C8DE9B /* YXYTimerProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYTimerProxy.h; sourceTree = "<group>"; };
+		A42ED52524E1835D00C8DE9B /* YXYTimerProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYTimerProxy.m; sourceTree = "<group>"; };
+		A45850F624DC06C500BAB5FE /* YXYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYViewController.h; sourceTree = "<group>"; };
+		A45850F724DC06C500BAB5FE /* YXYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYViewController.m; sourceTree = "<group>"; };
+		A484410F24E1A51200AC3811 /* YXYTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYTimer.h; sourceTree = "<group>"; };
+		A484411024E1A51200AC3811 /* YXYTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYTimer.m; sourceTree = "<group>"; };
 		A4D0D02924A221B100CB8E97 /* YXYTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXYTableViewCell.h; sourceTree = "<group>"; };
 		A4D0D02A24A221B100CB8E97 /* YXYTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXYTableViewCell.m; sourceTree = "<group>"; };
 		A4D0D02B24A221B100CB8E97 /* YXYTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXYTableViewCell.xib; sourceTree = "<group>"; };
@@ -147,6 +156,12 @@
 				A4D0D02924A221B100CB8E97 /* YXYTableViewCell.h */,
 				A4D0D02A24A221B100CB8E97 /* YXYTableViewCell.m */,
 				A4D0D02B24A221B100CB8E97 /* YXYTableViewCell.xib */,
+				A45850F624DC06C500BAB5FE /* YXYViewController.h */,
+				A45850F724DC06C500BAB5FE /* YXYViewController.m */,
+				A42ED52424E1835D00C8DE9B /* YXYTimerProxy.h */,
+				A42ED52524E1835D00C8DE9B /* YXYTimerProxy.m */,
+				A484410F24E1A51200AC3811 /* YXYTimer.h */,
+				A484411024E1A51200AC3811 /* YXYTimer.m */,
 			);
 			name = "Example for YXYBaseViewController";
 			path = YXYBaseViewController;
@@ -348,11 +363,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A484411124E1A51200AC3811 /* YXYTimer.m in Sources */,
 				A4D0D02C24A221B100CB8E97 /* YXYTableViewCell.m in Sources */,
 				6003F59E195388D20070C39A /* YXYAppDelegate.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				A45850F824DC06C500BAB5FE /* YXYViewController.m in Sources */,
 				184872112176CEEE00386B7D /* YXYTestViewController.m in Sources */,
 				18E1F6B12189ACB800AC99E8 /* YXYTestInteractor.m in Sources */,
+				A42ED52624E1835D00C8DE9B /* YXYTimerProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

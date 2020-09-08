@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) dispatch_source_t timer;
 @property (nonatomic, assign) BOOL using;
-@property (nonatomic, strong) id target;
+@property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL selector;
 @property (nonatomic, assign) NSTimeInterval interval;
 
@@ -21,7 +21,7 @@
 @implementation YXYGCDTimer
 
 - (void)dealloc{
-    NSLog(@"DEALLOC");
+    NSLog(@"YXYGCDTimer DEALLOC");
 }
 
 + (instancetype)initWithSelector:(SEL)selector target:(id)target timeInterval:(NSTimeInterval)timeInterval{
@@ -55,14 +55,20 @@
     self.using = YES;
 }
 
+- (void)run{
+    if (self.target && [self.target respondsToSelector:self.selector]) {
+        [self.target performSelector:self.selector];
+    }else{
+        [self cancel];
+    }
+}
+
 - (dispatch_source_t)timer{
     if (!_timer) {
         _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
         dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, self.interval * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
         dispatch_source_set_event_handler(_timer, ^{
-            if ([self.target respondsToSelector:self.selector]) {
-                [self.target performSelector:self.selector];
-            }
+            [self run];
         });
     }
     return _timer;
