@@ -10,7 +10,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YXYBaseViewController'
-    s.version          = '0.1.4'
+    s.version          = '0.1.5'
     s.summary          = 'VC基类和常用的category'
     
     # This description is used to generate tags and improve search results.
@@ -31,17 +31,6 @@ Pod::Spec.new do |s|
     # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
     
     s.ios.deployment_target = '9.0'
-    
-#    s.resource = 'YXYBaseViewController/Classes/**/*.xib'
-    s.source_files = 'YXYBaseViewController/Classes/**/*'
-    #bundle存放.string、.plist、.png等资源
-#    s.resource_bundles = {
-#         'YXYBaseViewController' => ['YXYBaseViewController/Classes/Resources/*']
-#    }
-    
-#    s.resource_bundles = {
-#      'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
-#    }
 
 #    s.subspec 'Category' do |category|
 #        category.source_files = 'YXYBaseViewController/Classes/Category/**/*'
@@ -73,11 +62,50 @@ Pod::Spec.new do |s|
 #    s.subspec 'YXYMediator' do |mediator|
 #        mediator.source_files = 'YXYBaseViewController/Classes/YXYMediator/**/*'
 #    end
+
+
+#    s.resource = 'YXYBaseViewController/Classes/**/*.xib'
+
+#    s.source_files = 'YXYBaseViewController/Classes/**/*'
+
+    #bundle存放.string、.plist、.png等资源
+#    s.resource_bundles = {
+#         'YXYBaseViewController' => ['YXYBaseViewController/Classes/Resources/*']
+#    }
+    
+#    s.resource_bundles = {
+#      'YXYBaseViewController' => ['YXYBaseViewController/Assets/*.png']
+#    }
+
+  s.preserve_paths = "#{s.name}/Classes/**/*","#{s.name}/Assets/*.{png,xib,plist}","Framework/#{s.version}/#{s.name}.framework"
+
+  $lib = ENV['use_lib']
+  $lib_name = ENV["#{s.name}_use_lib"]
+  if $lib || $lib_name
+     puts '---------binary-------'
+     s.ios.vendored_framework = "Framework/#{s.version}/#{s.name}.framework"
+     s.vendored_libraries = "YXYBaseViewController-#{s.version}/ios/YXYBaseViewController.a"
+
+     #这种是帮你打包成bundle
+     s.resource_bundles = {
+       "#{s.name}" => ["#{s.name}/Assets/*.{png,xib,plist}"]
+     }
+     #这种是你已经打包好了bundle，推荐这种，可以省去每次pod帮你生成bundle的时间
+     s.resources = "#{s.name}/Assets/*.bundle"
+  else
+     puts '.......source........'
+     s.source_files = "#{s.name}/Classes/**/*"
+     s.resources = "#{s.name}/Assets/*.bundle"
+     s.public_header_files = "#{s.name}/Classes/**/*.h"
+  end
      
 
     # s.public_header_files = 'Pod/Classes/**/*.h'
     # s.frameworks = 'UIKit', 'MapKit'
 #    s.frameworks = 'UIKit', 'Accelerate', 'ImageIO'
+
+    
+
 
     s.dependency 'AFNetworking'
     s.dependency 'MJRefresh'
